@@ -45,19 +45,22 @@ public class GameWorld implements Screen {
         stage.addActor(player);
 
 
-        rect1 = new RectangleObstacle("badlogic.jpg",
-                new Vector2(100, 0), new Vector2(100, 75));
-
-        rect2 = new RectangleObstacle("badlogic.jpg",
-                new Vector2(200, 0), new Vector2(100, 75));
+//        rect1 = new RectangleObstacle("badlogic.jpg",
+//                new Vector2(110, 0), new Vector2(100, 75));
+//
+//        rect2 = new RectangleObstacle("badlogic.jpg",
+//                new Vector2(210, 0), new Vector2(100, 75));
 
         rect3 = new RectangleObstacle("badlogic.jpg",
-                new Vector2(400, 100), new Vector2(100, 75));
+                new Vector2(400, 50), new Vector2(100, 75));
 
-        stage.addActor(rect1);
-        stage.addActor(rect2);
+//        stage.addActor(rect1);
+//        stage.addActor(rect2);
         stage.addActor(rect3);
 
+
+        System.out.println(rect3.getHeight());
+        System.out.println(rect3.getBounds());
     }
 
     @Override
@@ -71,16 +74,32 @@ public class GameWorld implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            player.jump();
+            if(player.getIsJumping() == Player.jumpingState.CAN_JUMP) {
+                player.jump(500);
+            }
+//            player.moveBy(0,10);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.D)) {
-            player.moveBy(5,0);
+            if(!player.isBlockedRight()) {
+                player.moveBy(5, 0);
+            }
+            else{
+//                System.out.println("Cannot go forward");
+            }
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-            player.moveBy(-5,0);
+            if(!player.isBlockedLeft()) {
+                player.moveBy(-5, 0);
+            }
         }
 
-        if(player.collidesWith(rect1) || player.collidesWith(rect2) || player.collidesWith(rect3)){
+        if(Gdx.input.isKeyPressed(Input.Keys.S)) {
+
+                player.moveBy(0, -10);
+
+        }
+
+        if(/*player.collidesWith(rect1) || player.collidesWith(rect2) || */player.collidesWith(rect3)){
             player.onCollision();
         }
         player.update();
