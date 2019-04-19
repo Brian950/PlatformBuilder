@@ -93,10 +93,9 @@ public class Player extends Image {
     public boolean collidesWith(RectangleObstacle rect){
         Rectangle otherBounds = rect.getBounds();
         if(playerBounds.overlaps(otherBounds) ){
-            floor = rect.getHeight();
+            floor = rect.getY()+rect.getHeight();
             return true;
         }
-
         if(playerBounds.x == otherBounds.x - rect.getWidth()&& playerBounds.y <= rect.getHeight()){
             isBlockedRight = true;
             return true;
@@ -137,15 +136,12 @@ public class Player extends Image {
         }
     }
 
-    public void jump(){
-        if(isJumping == jumpingState.CAN_JUMP) {
+    public void jump(float jumpHeight){
             isJumping = jumpingState.CANNOT_JUMP;
             playerMovements.jump();
             velocity.y = playerMovements.getVelocity().y;
             drawableRegion = new TextureRegionDrawable(jumpTexture);
             super.setDrawable(drawableRegion);
-            System.out.println(playerBounds.y);
-        }
     }
 
     public jumpingState getIsJumping() {
