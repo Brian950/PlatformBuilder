@@ -21,6 +21,9 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.logic.constructor.CoinFactory;
 import com.logic.constructor.FactoryProducer;
 import com.logic.constructor.ObjectFactory;
+import com.logic.logging.Dispatcher;
+import com.logic.logging.LogContext;
+import com.logic.logging.LoggingService;
 import com.mygdx.game.PlatformBuilder;
 import com.world.objects.RectangleObstacle;
 import com.world.objects.WorldObject;
@@ -44,6 +47,11 @@ public class ConstructorScreen implements Screen {
     private long lastTimeCounted;
     private Array<WorldObject> obstacleArray;
     private ObjectFactory obj;
+    private Dispatcher dispatcher;
+    private LoggingService logService;
+
+    // Enable/disable logging
+    private boolean LOG_STATUS = true;
 
 
     public ConstructorScreen(PlatformBuilder game){
@@ -56,6 +64,13 @@ public class ConstructorScreen implements Screen {
         buttonAtlas = new TextureAtlas(Gdx.files.internal("quantum/skin/quantum-horizon-ui.atlas"));
         skin = new Skin();
         skin.addRegions(buttonAtlas);
+
+        // Dispatcher
+        dispatcher = Dispatcher.getInstance();
+
+        // Services
+        logService = new LoggingService();
+        logService.log(new LogContext("Application started.", LOG_STATUS), dispatcher);
 
         // FPS counter
         frames = new BitmapFont();

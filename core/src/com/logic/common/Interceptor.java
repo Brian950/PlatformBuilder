@@ -1,10 +1,10 @@
 package com.logic.common;
 
-import com.logic.logging.Context;
+import com.logic.logging.LogContext;
 
 public interface Interceptor {
 
-    void preRequest(Context c);
-    void postRequest(Context c);
+    void preRequest(LogContext c);
+    void postRequest(LogContext c);
 
 }

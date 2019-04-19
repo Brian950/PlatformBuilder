@@ -15,13 +15,21 @@ public class Dispatcher implements Interceptor {
     }
 
     @Override
-    public void preRequest(Context c) {
+    public void preRequest(LogContext context) {
         Interceptor i = interceptors.get(interceptors.size()-1);
+        if(context.loggingEnabled()){
+            System.out.println("Dispatcher Pre Message: " + context.getMessage());
+            i.preRequest(context);
+        }
     }
 
     @Override
-    public void postRequest(Context c) {
+    public void postRequest(LogContext context) {
         Interceptor i = interceptors.get(interceptors.size()-1);
+        if(context.loggingEnabled()){
+            System.out.println("Dispatcher Post Message: " + context.getMessage());
+            i.preRequest(context);
+        }
     }
 
     public void register(Interceptor i){
@@ -32,7 +40,7 @@ public class Dispatcher implements Interceptor {
         interceptors.remove(i);
     }
 
-    public Dispatcher getInstance(){
+    public static Dispatcher getInstance(){
         if(dispatcher == null){
             return new Dispatcher();
         }

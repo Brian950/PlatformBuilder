@@ -13,16 +13,16 @@ public class LoggingInterceptor implements Interceptor {
     }
 
     @Override
-    public void preRequest(Context c) {
-
+    public void preRequest(LogContext context) {
+        System.out.println("PreReq Log message: "+context.getMessage());
     }
 
     @Override
-    public void postRequest(Context c) {
-
+    public void postRequest(LogContext context) {
+        System.out.println("PostReq Log message: "+context.getMessage());
     }
 
-    public LoggingInterceptor getInstance(){
+    public static LoggingInterceptor getInstance(){
         if(interceptor == null){
             return new LoggingInterceptor();
         }
