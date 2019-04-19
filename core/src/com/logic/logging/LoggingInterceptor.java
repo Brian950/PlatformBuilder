@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class LoggingInterceptor implements Interceptor {
 
-    private LoggingInterceptor interceptor;
+    private static LoggingInterceptor interceptor;
     private ArrayList<String> log;
 
     public LoggingInterceptor(){
