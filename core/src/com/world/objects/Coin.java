@@ -73,6 +73,11 @@ public class Coin extends WorldObject implements ScoreObject {
     }
 
     @Override
+    public Rectangle getCoinBounds() {
+        return bounds;
+    }
+
+    @Override
     public void moveBy(float x, float y){
 
         if(getX()+x > 0 & getX()+x < 900) {

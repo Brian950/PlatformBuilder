@@ -9,7 +9,6 @@ import com.world.player.Player;
 
 public class Movements {
 
-    private boolean isJumping = false;
     private boolean orientation = true;
 
     private boolean powerUpUsed = true;
@@ -25,6 +24,7 @@ public class Movements {
     private Command moveLeft;
     private Command jump;
     private Rectangle bounds;
+    private boolean isJumping;
 
     public Movements(Vector2 playerPos, Rectangle playerBounds, float jumpHeight){
         position = playerPos;
@@ -33,7 +33,7 @@ public class Movements {
         float gravity = -1000;
         moveRight = new MoveRightOnCommand(playerPos, playerBounds);
         moveLeft = new MoveLeftOnCommand(playerPos, playerBounds);
-        jump = new JumpOnCommand(playerPos, playerBounds, jumpHeight);
+        jump = new JumpOnCommand(playerPos, playerBounds);
         acceleration = new Vector2(0, gravity);
     }
 
@@ -62,7 +62,7 @@ public class Movements {
 
     public void jump() {
         jump.executeMovement(position.x, orientation);
-        isJumping = true;
+        boolean isJumping = true;
         powerUpUsed = true;
         position.y = jump.getPosition();
         bounds.y = jump.getPlayerBounds();
