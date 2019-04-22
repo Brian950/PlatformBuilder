@@ -30,7 +30,7 @@ public class Movements {
         position = playerPos;
         bounds = playerBounds;
         velocity = new Vector2();
-        float gravity = -1000;
+        gravity = -1000;
         moveRight = new MoveRightOnCommand(playerPos, playerBounds);
         moveLeft = new MoveLeftOnCommand(playerPos, playerBounds);
         jump = new JumpOnCommand(playerPos, playerBounds);

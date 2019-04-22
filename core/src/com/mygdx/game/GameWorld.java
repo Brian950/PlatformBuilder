@@ -16,7 +16,11 @@ import com.logic.controller.InputController;
 import com.logic.command.Movements;
 import com.world.objects.Coin;
 import com.world.objects.RectangleObstacle;
+import com.world.objects.ScoreObject;
 import com.world.objects.WorldObject;
+import com.world.player.BluePersonCharacter;
+import com.world.player.BluePersonExtension;
+import com.world.player.Character;
 import com.world.player.Player;
 
 public class GameWorld implements Screen {
@@ -29,6 +33,7 @@ public class GameWorld implements Screen {
     private RectangleObstacle rect2;
     private RectangleObstacle rect3;
     private Coin coin;
+    private Character character;
 
 
     public GameWorld(PlatformBuilder game) {
@@ -42,13 +47,25 @@ public class GameWorld implements Screen {
 
     public void create(){
         batch = new SpriteBatch();
-        player = new Player("sprites/CharSprite.png",new Vector2(0,0), new Vector2(100,75));
+        player = new Player("sprites/CharSprite.png",new Vector2(100,0), new Vector2(100,75));
 
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         stage.addActor(player);
 
         coin = new Coin(new Vector2(600,0));
+
+        character = new BluePersonCharacter("BluePerson" , new Vector2(0,0), new Vector2(100, 75));
+
+        BluePersonExtension bluePersonExtension = (BluePersonExtension) character.getCharacterExtension("BluePerson");
+
+        if(bluePersonExtension != null) {
+            bluePersonExtension.bluePersonReady();
+            character.changeTexture("sprites/BluePerson.png");
+        }
+
+
+        stage.addActor(character);
 
         stage.addActor(coin);
         rect3 = new RectangleObstacle("badlogic.jpg",
@@ -82,15 +99,17 @@ public class GameWorld implements Screen {
                 player.moveBy(-5, 0);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-                player.moveBy(0, -10);
+//                player.moveBy(0, -10);
+            character.moveBy(5,0);
         }
+
 
         if(player.collidesWith(rect3)){
             player.onCollision();
         }
 
         if(coin != null) {
-            if (player.collidesWith((WorldObject) coin)) {
+            if (player.collidesWith((ScoreObject) coin)) {
                 System.out.println("Got it");
                 coin.addAction(Actions.removeActor());
                 coin = null;

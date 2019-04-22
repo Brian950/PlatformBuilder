@@ -31,13 +31,5 @@ public class JumpOnCommand implements Command {
     public Vector2 getVelocity(){
         return velocity;
     }
-   /* public void setJumpHeight(float jumpHeight) {
-        this.jumpHeight = jumpHeight;
-    }*/
 
-/*
-    public float getJumpHeight() {
-        return jumpHeight;
-    }
-*/
 }

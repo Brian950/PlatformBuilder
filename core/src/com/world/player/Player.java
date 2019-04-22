@@ -9,10 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.logic.command.Movements;
-import com.world.objects.RectangleObstacle;
 import com.world.objects.ScoreObject;
 import com.world.objects.WorldObject;
-import org.lwjgl.Sys;
 
 
 public class Player extends Image {
@@ -74,10 +72,6 @@ public class Player extends Image {
             setY(getY() + y);
             playerBounds.y += y;
         }
-    }
-
-    public Rectangle getPlayerBounds() {
-        return playerBounds;
     }
 
     public boolean collidesWith(Player rect)
