@@ -19,13 +19,12 @@ public class MovementsTest extends TestSetUp
     private Vector2 position;
 
     public MovementsTest(){
-        super();
+        super(1);
         playerPos = new Vector2();
         playerBounds = new Rectangle();
         velocity = new Vector2();
         position = new Vector2();
-        moveTest = new Movements(playerPos, playerBounds);
-
+        moveTest = new Movements(playerPos, playerBounds, 500);
     }
 
     @Test

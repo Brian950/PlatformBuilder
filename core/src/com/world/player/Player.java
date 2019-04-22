@@ -51,7 +51,7 @@ public class Player extends Image {
         playerBounds = new Rectangle(position.x, position.y, size.x, size.y);
         setBounds(position.x, position.y, size.x, size.y);
 
-        playerMovements = new Movements(playerPosition,playerBounds);
+        playerMovements = new Movements(playerPosition,playerBounds, 500 );//add jump
     }
 
     @Override
@@ -93,9 +93,10 @@ public class Player extends Image {
     public boolean collidesWith(RectangleObstacle rect){
         Rectangle otherBounds = rect.getBounds();
         if(playerBounds.overlaps(otherBounds) ){
-            floor = rect.getY()+rect.getHeight();
+            floor = rect.getHeight();
             return true;
         }
+
         if(playerBounds.x == otherBounds.x - rect.getWidth()&& playerBounds.y <= rect.getHeight()){
             isBlockedRight = true;
             return true;
@@ -136,12 +137,15 @@ public class Player extends Image {
         }
     }
 
-    public void jump(float jumpHeight){
+    public void jump(){
+        if(isJumping == jumpingState.CAN_JUMP) {
             isJumping = jumpingState.CANNOT_JUMP;
             playerMovements.jump();
             velocity.y = playerMovements.getVelocity().y;
             drawableRegion = new TextureRegionDrawable(jumpTexture);
             super.setDrawable(drawableRegion);
+            System.out.println(playerBounds.y);
+        }
     }
 
     public jumpingState getIsJumping() {

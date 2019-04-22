@@ -11,28 +11,54 @@ public class Movements {
 
     private boolean isJumping = false;
     private boolean orientation = true;
+
     private boolean powerUpUsed = true;
 
     private float gravity = -1000;
+
     private Vector2 position;
+
     private Vector2 velocity;
+
     private Vector2 acceleration;
     private Command moveRight;
     private Command moveLeft;
     private Command jump;
     private Rectangle bounds;
 
-    public Movements(Vector2 playerPos, Rectangle playerBounds){
+    public Movements(Vector2 playerPos, Rectangle playerBounds, float jumpHeight){
         position = playerPos;
         bounds = playerBounds;
         velocity = new Vector2();
         float gravity = -1000;
         moveRight = new MoveRightOnCommand(playerPos, playerBounds);
         moveLeft = new MoveLeftOnCommand(playerPos, playerBounds);
-        jump = new JumpOnCommand(playerPos, playerBounds);
+        jump = new JumpOnCommand(playerPos, playerBounds, jumpHeight);
         acceleration = new Vector2(0, gravity);
     }
 
+
+    public void update()
+    {
+        float dt = Gdx.graphics.getDeltaTime();
+        velocity.add(acceleration.x * dt, acceleration.y * dt);
+        position.add(velocity.x * dt, velocity.y * dt);
+
+        if (position.y <= 0){ // hit ground, so bounce
+            position.y = 0;
+            isJumping = false;
+            /*if(powerUpUsed){
+                jump.setJumpHeight(500);
+            }*/
+        }
+        if ((position.x <= 0)){
+            position.x = 0;
+        }
+/*        if (position.x >= Gdx.graphics.getWidth() - player.getRegionWidth()/2){
+            position.x = Gdx.graphics.getWidth() - player.getRegionWidth()/2;
+        }*/
+
+    }
 
     public void jump() {
         jump.executeMovement(position.x, orientation);
