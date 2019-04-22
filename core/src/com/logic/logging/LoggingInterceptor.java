@@ -1,32 +1,10 @@
 package com.logic.logging;
 
-import com.logic.common.Interceptor;
+import com.logic.logging.LogContext;
 
-import java.util.ArrayList;
+public interface LoggingInterceptor {
 
-public class LoggingInterceptor implements Interceptor {
+    void preRequest(LogContext c);
+    void postRequest(LogContext c);
 
-    private static LoggingInterceptor interceptor;
-    private ArrayList<String> log;
-
-    public LoggingInterceptor(){
-    }
-
-    @Override
-    public void preRequest(LogContext context) {
-        System.out.println("PreReq Log message: "+context.getMessage());
-    }
-
-    @Override
-    public void postRequest(LogContext context) {
-        System.out.println("PostReq Log message: "+context.getMessage());
-    }
-
-    public static LoggingInterceptor getInstance(){
-        if(interceptor == null){
-            return new LoggingInterceptor();
-        }
-        else
-            return interceptor;
-    }
 }

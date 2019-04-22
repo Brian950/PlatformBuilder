@@ -11,9 +11,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.logic.controller.InputController;
 import com.logic.command.Movements;
+import com.world.objects.Coin;
 import com.world.objects.RectangleObstacle;
+import com.world.objects.WorldObject;
 import com.world.player.Player;
 
 public class GameWorld implements Screen {
@@ -25,6 +28,7 @@ public class GameWorld implements Screen {
     private RectangleObstacle rect1;
     private RectangleObstacle rect2;
     private RectangleObstacle rect3;
+    private Coin coin;
 
 
     public GameWorld(PlatformBuilder game) {
@@ -38,26 +42,19 @@ public class GameWorld implements Screen {
 
     public void create(){
         batch = new SpriteBatch();
-        player = new Player("sprites/CharSprite.png",new Vector2(0,100), new Vector2(100,75));
+        player = new Player("sprites/CharSprite.png",new Vector2(0,0), new Vector2(100,75));
 
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         stage.addActor(player);
 
+        coin = new Coin(new Vector2(600,0));
 
-//        rect1 = new RectangleObstacle("badlogic.jpg",
-//                new Vector2(110, 0), new Vector2(100, 75));
-//
-//        rect2 = new RectangleObstacle("badlogic.jpg",
-//                new Vector2(210, 0), new Vector2(100, 75));
-
+        stage.addActor(coin);
         rect3 = new RectangleObstacle("badlogic.jpg",
-                new Vector2(400, 50), new Vector2(100, 75));
+                new Vector2(400, 0), new Vector2(100, 75));
 
-//        stage.addActor(rect1);
-//        stage.addActor(rect2);
         stage.addActor(rect3);
-
 
         System.out.println(rect3.getHeight());
         System.out.println(rect3.getBounds());
@@ -75,32 +72,29 @@ public class GameWorld implements Screen {
 
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
             if(player.getIsJumping() == Player.jumpingState.CAN_JUMP) {
-                player.jump(500);
+                player.jump(400);
             }
-//            player.moveBy(0,10);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.D)) {
-            if(!player.isBlockedRight()) {
+        if(Gdx.input.isKeyPressed(Input.Keys.D) && !player.isBlockedRight()) {
                 player.moveBy(5, 0);
-            }
-            else{
-//                System.out.println("Cannot go forward");
-            }
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-            if(!player.isBlockedLeft()) {
+        if(Gdx.input.isKeyPressed(Input.Keys.A) && !player.isBlockedLeft()) {
                 player.moveBy(-5, 0);
-            }
         }
-
         if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-
                 player.moveBy(0, -10);
-
         }
 
-        if(/*player.collidesWith(rect1) || player.collidesWith(rect2) || */player.collidesWith(rect3)){
+        if(player.collidesWith(rect3)){
             player.onCollision();
+        }
+
+        if(coin != null) {
+            if (player.collidesWith((WorldObject) coin)) {
+                System.out.println("Got it");
+                coin.addAction(Actions.removeActor());
+                coin = null;
+            }
         }
         player.update();
 
