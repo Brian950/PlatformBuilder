@@ -8,8 +8,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static sun.plugin2.util.PojoUtil.toJson;
-
 public class SaveLevel {
 
     private String levelName;
