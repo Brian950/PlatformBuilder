@@ -1,6 +1,7 @@
 package com.world.objects;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 public class TriangleObstacle extends WorldObject {
     public void onCollision(){
@@ -14,6 +15,16 @@ public class TriangleObstacle extends WorldObject {
 
     @Override
     public Rectangle getBounds() {
+        return null;
+    }
+
+    @Override
+    public Vector2 getPosition() {
+        return null;
+    }
+
+    @Override
+    public Vector2 getSize() {
         return null;
     }
 }

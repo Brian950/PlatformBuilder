@@ -66,6 +66,16 @@ public class RectangleObstacle extends WorldObject {
         return bounds;
     }
 
+    @Override
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    @Override
+    public Vector2 getSize() {
+        return size;
+    }
+
     public boolean collidesWith(WorldObject obj){
         Rectangle otherBounds = obj.getBounds();
         if(bounds.overlaps(otherBounds)){

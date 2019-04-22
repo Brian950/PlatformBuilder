@@ -72,6 +72,16 @@ public class CoinBox extends WorldObject implements ScoreObject{
     }
 
     @Override
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    @Override
+    public Vector2 getSize() {
+        return size;
+    }
+
+    @Override
     public int getScore(){
         int totalBoxScore = 0;
         for(Coin c : coins){
