@@ -10,6 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.logic.command.Movements;
 import com.world.objects.RectangleObstacle;
+import com.world.objects.ScoreObject;
+import com.world.objects.WorldObject;
+import org.lwjgl.Sys;
 
 
 public class Player extends Image {
@@ -19,6 +22,7 @@ public class Player extends Image {
     }
 
     private String playerTexturePath;
+    private int playerScore;
     private Rectangle playerBounds;
     private Texture playerTexture;
     private Texture jumpTexture;
@@ -50,8 +54,8 @@ public class Player extends Image {
         acceleration = new Vector2(0, -1000);
         playerBounds = new Rectangle(position.x, position.y, size.x, size.y);
         setBounds(position.x, position.y, size.x, size.y);
-
-        playerMovements = new Movements(playerPosition,playerBounds);
+        playerScore = 0;
+        playerMovements = new Movements(playerPosition,playerBounds, 500);
     }
 
     @Override
@@ -90,25 +94,34 @@ public class Player extends Image {
         return false;
     }
 
-    public boolean collidesWith(RectangleObstacle rect){
+    public boolean collidesWith(WorldObject rect){
         Rectangle otherBounds = rect.getBounds();
-        if(playerBounds.overlaps(otherBounds) ){
-            floor = rect.getY()+rect.getHeight();
-            return true;
-        }
-        if(playerBounds.x == otherBounds.x - rect.getWidth()&& playerBounds.y <= rect.getHeight()){
+        if(playerBounds.x + playerBounds.getWidth() == rect.getX() && playerBounds.y <= rect.getHeight()){
             isBlockedRight = true;
             return true;
-        } else if(playerBounds.x == otherBounds.x + rect.getWidth() && playerBounds.y <= rect.getHeight()){
+        }
+        if(playerBounds.x == otherBounds.x + rect.getWidth() && playerBounds.y <= rect.getHeight()){
             isBlockedLeft = true;
             return true;
         }
-
+        if(playerBounds.x + playerBounds.getWidth() >= otherBounds.x  && playerBounds.x <= otherBounds.x + rect.getWidth())   {
+            floor = rect.getY()+rect.getHeight();
+            return true;
+        }
 
         floor = 0;
         isBlockedRight = false;
         isBlockedLeft = false;
         isColliding = false;
+        return false;
+    }
+
+    public boolean collidesWith(ScoreObject coin) {
+        Rectangle coinBound  = coin.getCoinBounds();
+        if(playerBounds.overlaps(coinBound)){
+            playerScore += coin.getScore();
+            return true;
+        }
         return false;
     }
 

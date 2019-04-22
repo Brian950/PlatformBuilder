@@ -79,15 +79,11 @@ public class CharacterTest extends ApplicationAdapter {
             }
             player1.moveBy(0,10);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.D)) {
-            if(!player1.isBlockedRight()) {
+        if(Gdx.input.isKeyPressed(Input.Keys.D) && !player1.isBlockedRight()) {
                 player1.moveBy(5, 0);
-            }
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-            if(!player1.isBlockedLeft()) {
+        if(Gdx.input.isKeyPressed(Input.Keys.A) && !player1.isBlockedLeft()) {
                 player1.moveBy(-5, 0);
-            }
         }
 
         if(player1.collidesWith(playerRect) || player1.collidesWith(rectangleObstacle)){
