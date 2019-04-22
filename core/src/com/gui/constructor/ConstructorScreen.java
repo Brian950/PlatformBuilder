@@ -25,6 +25,7 @@ import com.logic.logging.Dispatcher;
 import com.logic.logging.LogContext;
 import com.logic.logging.LoggingService;
 import com.mygdx.game.PlatformBuilder;
+import com.world.levels.SaveLevel;
 import com.world.objects.RectangleObstacle;
 import com.world.objects.WorldObject;
 
@@ -229,7 +230,8 @@ public class ConstructorScreen implements Screen {
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-
+                SaveLevel save = new SaveLevel("Level", obstacleArray);
+                save.saveToFile();
                 logService.log(new LogContext("Level saved.", LOG_STATUS), dispatcher);
             }
         });

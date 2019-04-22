@@ -8,19 +8,33 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import static sun.plugin2.util.PojoUtil.toJson;
+
 public class SaveLevel {
 
     private String levelName;
     private Array<WorldObject> obstacleArray;
+    private ObjectAttributes[] obstacles;
     private File file;
-    private Gson gsonBuilder = new GsonBuilder().create();
+    private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public SaveLevel(String name, Array<WorldObject> obstacleArray){
         levelName = name;
         this.obstacleArray = obstacleArray;
-        file = new File(levelName+".json");
+        file = new File("levels\\"+levelName+".json");
+    }
+
+    public void saveToFile(){
+        obstacles = new ObjectAttributes[obstacleArray.size];
+        for(int i =0; i < obstacleArray.size; i++)
+        {
+            obstacles[i] = new ObjectAttributes(obstacleArray.get(i).toString(), obstacleArray.get(i).getX(), obstacleArray.get(i).getY(), obstacleArray.get(i).getSize());
+        }
         try {
-            gsonBuilder.toJson(obstacleArray, new FileWriter(file));
+            String jsonData = gson.toJson(obstacles);
+            FileWriter fw = new FileWriter(file);
+            fw.write(jsonData);
+            fw.close();
         }catch(IOException e){
             System.out.print(e.getMessage());
         }
