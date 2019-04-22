@@ -40,6 +40,7 @@ public class ConstructorScreen implements Screen {
     private TextButton squareButton;
     private TextButton coinButton;
     private TextButton coinBoxButton;
+    private TextButton saveButton;
     private TextureAtlas buttonAtlas;
     private Skin skin;
     private float frameRate;
@@ -112,16 +113,25 @@ public class ConstructorScreen implements Screen {
         coinBoxButton.setTransform(true);
         coinBoxButton.setColor(new Color(4555));
 
+        TextButton.TextButtonStyle saveButtonStyle = new TextButton.TextButtonStyle();
+        saveButtonStyle.up = skin.getDrawable("button");
+        saveButtonStyle.down = skin.getDrawable("button-pressed");
+        saveButtonStyle.font = new BitmapFont(Gdx.files.internal("quantum/skin/font-export.fnt"));
+        saveButton = new TextButton("Save Level", squareButtonStyle);
+        saveButton.setTransform(true);
+        saveButton.setColor(new Color(97777));
+
         // Table
         table = new Table();
-        table.add(rectButton).left();
+        table.add(rectButton).right();
+        table.add(saveButton).right();
         table.row();
-        table.add(squareButton).left();
+        table.add(squareButton).right();
         table.row();
-        table.add(coinButton).left();
+        table.add(coinButton).right();
         table.row();
-        table.add(coinBoxButton).left();
-        table.setPosition(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()-120);
+        table.add(coinBoxButton).right();
+        table.setPosition(Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()-120);
 
         // WorldObject array
         obstacleArray = new Array<WorldObject>();
@@ -149,6 +159,7 @@ public class ConstructorScreen implements Screen {
 
                 stage.addActor(rect);
                 obstacleArray.add(rect);
+                logService.log(new LogContext("Rectangle added to scene.", LOG_STATUS), dispatcher);
             }
         });
 
@@ -169,6 +180,7 @@ public class ConstructorScreen implements Screen {
 
                 stage.addActor(rect);
                 obstacleArray.add(rect);
+                logService.log(new LogContext("Square added to screen.", LOG_STATUS), dispatcher);
             }
         });
 
@@ -186,6 +198,7 @@ public class ConstructorScreen implements Screen {
 
                 stage.addActor(coin);
                 obstacleArray.add(coin);
+                logService.log(new LogContext("Coin added to screen.", LOG_STATUS), dispatcher);
             }
         });
 
@@ -203,6 +216,21 @@ public class ConstructorScreen implements Screen {
 
                 stage.addActor(box);
                 obstacleArray.add(box);
+                logService.log(new LogContext("CoinBox added to screen.", LOG_STATUS), dispatcher);
+            }
+        });
+
+        saveButton.addListener(new ClickListener(){
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                logService.log(new LogContext("Level saved.", LOG_STATUS), dispatcher);
             }
         });
     }
@@ -224,15 +252,15 @@ public class ConstructorScreen implements Screen {
         batch.end();
 
         // Check for collisions
-        for(int i = 0; i < obstacleArray.size; i++){
-            for(int j = 0; j < obstacleArray.size; j++){
-                if(i != j){
-                    if(obstacleArray.get(i).collidesWith(obstacleArray.get(j))){
-                        obstacleArray.get(i).onCollision(); obstacleArray.get(j).onCollision();
-                    }
-                }
-            }
-        }
+//        for(int i = 0; i < obstacleArray.size; i++){
+//            for(int j = 0; j < obstacleArray.size; j++){
+//                if(i != j){
+//                    if(obstacleArray.get(i).collidesWith(obstacleArray.get(j))){
+//                        obstacleArray.get(i).onCollision(); obstacleArray.get(j).onCollision();
+//                    }
+//                }
+//            }
+//        }
 
         update();
     }

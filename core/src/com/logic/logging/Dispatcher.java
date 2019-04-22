@@ -1,13 +1,11 @@
 package com.logic.logging;
 
-import com.logic.common.Interceptor;
-
 import java.util.ArrayList;
 
-public class Dispatcher implements Interceptor {
+public class Dispatcher implements LoggingInterceptor {
 
     private static Dispatcher dispatcher;
-    private ArrayList<Interceptor> interceptors = new ArrayList<Interceptor>();
+    private ArrayList<LoggingInterceptor> interceptors = new ArrayList<LoggingInterceptor>();
 
 
     public Dispatcher(){
@@ -16,27 +14,27 @@ public class Dispatcher implements Interceptor {
 
     @Override
     public void preRequest(LogContext context) {
-        Interceptor i = interceptors.get(interceptors.size()-1);
+        LoggingInterceptor i = interceptors.get(interceptors.size()-1);
         if(context.loggingEnabled()){
-            System.out.println("Dispatcher Pre Message: " + context.getMessage());
+            System.out.println("Debug: " + context.getMessage());
             i.preRequest(context);
         }
     }
 
     @Override
     public void postRequest(LogContext context) {
-        Interceptor i = interceptors.get(interceptors.size()-1);
+        LoggingInterceptor i = interceptors.get(interceptors.size()-1);
         if(context.loggingEnabled()){
-            System.out.println("Dispatcher Post Message: " + context.getMessage());
+            System.out.println("Debug: " + context.getMessage());
             i.preRequest(context);
         }
     }
 
-    public void register(Interceptor i){
+    public void register(LoggingInterceptor i){
         interceptors.add(i);
     }
 
-    public void remove(Interceptor i){
+    public void remove(LoggingInterceptor i){
         interceptors.remove(i);
     }
 

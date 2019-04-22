@@ -83,11 +83,11 @@ public class CoinBox extends WorldObject implements ScoreObject{
     @Override
     public void moveBy(float x, float y){
 
-        if(getX()+x > 0 & getX()+x < 900) {
+        if(getX()+x > 0 && getX()+x < 900) {
             setX(getX() + x);
             bounds.x += x;
         }
-        if(getY()+y > 0 & getY()+y < 600) {
+        if(getY()+y > 0 && getY()+y < 600) {
             setY(getY() + y);
             bounds.y += y;
         }
