@@ -18,8 +18,7 @@ public class Character extends Image {
     }
 
 
-    private final static float INITIAL_JUMP_HEIGHT = 500;
-
+    private static final float INITIAL_JUMP_HEIGHT = 500;
     private String name;
     private int characterScore;
     private float jumpHeight;
@@ -39,7 +38,6 @@ public class Character extends Image {
 
         name = characterName;
         this.characterPosition = characterPosition;
-        Vector2 characterSize1 = characterSize;
 
         canMoveLeft = false;
         canMoveRight = false;

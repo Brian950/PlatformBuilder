@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Logger;
 import com.logic.strategy.Context;
 import com.logic.strategy.JumpHigher;
 import com.mygdx.game.PlatformBuilder;
@@ -29,16 +28,11 @@ public class GameWorld implements Screen {
     private Array<ScoreObject> coinArray;
 
 
-    public GameWorld(PlatformBuilder game) {
-        PlatformBuilder game1 = game;
+    public GameWorld() {
         create();
     }
 
-    public GameWorld(){
-        create();
-    }
-
-    public void create()    {
+    private void create()    {
         batch = new SpriteBatch();
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);

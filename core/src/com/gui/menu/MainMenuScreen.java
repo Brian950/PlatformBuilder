@@ -104,8 +104,7 @@ public class MainMenuScreen implements Screen {
 			dispose();
 		}
 		else if(playButton.isPressed()){
-//			game.setScreen(new GameScreen(game));
-			game.setScreen(new GameWorld(game));
+			game.setScreen(new GameWorld());
 			dispose();
 		}
 
@@ -132,23 +131,26 @@ public class MainMenuScreen implements Screen {
 
 	@Override
 	public void show() {
-
+		//Not used
 	}
 	
 	@Override
 	public void resize(int width, int height) {
+		//Not used
 	}
 
 	@Override
 	public void pause() {
+		//Not used
 	}
 
 	@Override
 	public void resume() {
+		//Not used
 	}
 
 	@Override
 	public void hide() {
-
+		//Not used
 	}
 }

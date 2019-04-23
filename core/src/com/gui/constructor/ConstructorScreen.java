@@ -28,18 +28,15 @@ import com.world.objects.WorldObject;
 
 public class ConstructorScreen implements Screen {
 
+
+    private static final String BUTTON = "BUTTON";
+    private static final String BUTTON_PRESSED = "BUTTON-pressed";
+    private static final String QUANTUM_SKIN_FONT_EXPORT_FNT = "quantum/skin/font-export.fnt";
+
     private PlatformBuilder game;
     private SpriteBatch batch;
-    private BitmapFont frames;
     private Label framesLabel;
     private Stage stage;
-    private Table table;
-    private TextButton rectButton;
-    private TextButton squareButton;
-    private TextButton coinButton;
-    private TextButton coinBoxButton;
-    private TextButton saveButton;
-    private TextureAtlas buttonAtlas;
     private float frameRate;
     private float sinceChange;
     private long lastTimeCounted;
@@ -57,9 +54,9 @@ public class ConstructorScreen implements Screen {
         create();
     }
 
-    public void create(){
+    private void create(){
         batch = new SpriteBatch();
-        buttonAtlas = new TextureAtlas(Gdx.files.internal("quantum/skin/quantum-horizon-ui.atlas"));
+        TextureAtlas buttonAtlas = new TextureAtlas(Gdx.files.internal("quantum/skin/quantum-horizon-ui.atlas"));
         Skin skin = new Skin();
         skin.addRegions(buttonAtlas);
 
@@ -71,7 +68,7 @@ public class ConstructorScreen implements Screen {
         logService.log(new LogContext("Application started.", LOG_STATUS), dispatcher);
 
         // FPS counter
-        frames = new BitmapFont();
+        BitmapFont frames = new BitmapFont();
         lastTimeCounted = TimeUtils.millis();
         frameRate = Gdx.graphics.getFramesPerSecond();
         framesLabel = new Label("FPS: "+frameRate, new Label.LabelStyle(frames, Color.BLACK));
@@ -79,47 +76,47 @@ public class ConstructorScreen implements Screen {
 
         // Buttons
         TextButton.TextButtonStyle squareButtonStyle = new TextButton.TextButtonStyle();
-        squareButtonStyle.up = skin.getDrawable("button");
-        squareButtonStyle.down = skin.getDrawable("button-pressed");
-        squareButtonStyle.font = new BitmapFont(Gdx.files.internal("quantum/skin/font-export.fnt"));
-        squareButton = new TextButton("Square", squareButtonStyle);
+        squareButtonStyle.up = skin.getDrawable(BUTTON);
+        squareButtonStyle.down = skin.getDrawable(BUTTON_PRESSED);
+        squareButtonStyle.font = new BitmapFont(Gdx.files.internal(QUANTUM_SKIN_FONT_EXPORT_FNT));
+        TextButton squareButton = new TextButton("Square", squareButtonStyle);
         squareButton.setTransform(true);
         squareButton.setColor(new Color(4555));
 
         TextButton.TextButtonStyle rectButtonStyle = new TextButton.TextButtonStyle();
-        rectButtonStyle.up = skin.getDrawable("button");
-        rectButtonStyle.down = skin.getDrawable("button-pressed");
-        rectButtonStyle.font = new BitmapFont(Gdx.files.internal("quantum/skin/font-export.fnt"));
-        rectButton = new TextButton("Rectangle", rectButtonStyle);
+        rectButtonStyle.up = skin.getDrawable(BUTTON);
+        rectButtonStyle.down = skin.getDrawable(BUTTON_PRESSED);
+        rectButtonStyle.font = new BitmapFont(Gdx.files.internal(QUANTUM_SKIN_FONT_EXPORT_FNT));
+        TextButton rectButton = new TextButton("Rectangle", rectButtonStyle);
         rectButton.setTransform(true);
         rectButton.setColor(new Color(4555));
 
         TextButton.TextButtonStyle coinButtonStyle = new TextButton.TextButtonStyle();
-        coinButtonStyle.up = skin.getDrawable("button");
-        coinButtonStyle.down = skin.getDrawable("button-pressed");
-        coinButtonStyle.font = new BitmapFont(Gdx.files.internal("quantum/skin/font-export.fnt"));
-        coinButton = new TextButton("Score Coin", coinButtonStyle);
+        coinButtonStyle.up = skin.getDrawable(BUTTON);
+        coinButtonStyle.down = skin.getDrawable(BUTTON_PRESSED);
+        coinButtonStyle.font = new BitmapFont(Gdx.files.internal(QUANTUM_SKIN_FONT_EXPORT_FNT));
+        TextButton coinButton = new TextButton("Score Coin", coinButtonStyle);
         coinButton.setTransform(true);
         coinButton.setColor(new Color(4555));
 
         TextButton.TextButtonStyle coinBoxButtonStyle = new TextButton.TextButtonStyle();
-        coinBoxButtonStyle.up = skin.getDrawable("button");
-        coinBoxButtonStyle.down = skin.getDrawable("button-pressed");
-        coinBoxButtonStyle.font = new BitmapFont(Gdx.files.internal("quantum/skin/font-export.fnt"));
-        coinBoxButton = new TextButton("Coin Box", coinBoxButtonStyle);
+        coinBoxButtonStyle.up = skin.getDrawable(BUTTON);
+        coinBoxButtonStyle.down = skin.getDrawable(BUTTON_PRESSED);
+        coinBoxButtonStyle.font = new BitmapFont(Gdx.files.internal(QUANTUM_SKIN_FONT_EXPORT_FNT));
+        TextButton coinBoxButton = new TextButton("Coin Box", coinBoxButtonStyle);
         coinBoxButton.setTransform(true);
         coinBoxButton.setColor(new Color(4555));
 
         TextButton.TextButtonStyle saveButtonStyle = new TextButton.TextButtonStyle();
-        saveButtonStyle.up = skin.getDrawable("button");
-        saveButtonStyle.down = skin.getDrawable("button-pressed");
-        saveButtonStyle.font = new BitmapFont(Gdx.files.internal("quantum/skin/font-export.fnt"));
-        saveButton = new TextButton("Save Level", squareButtonStyle);
+        saveButtonStyle.up = skin.getDrawable(BUTTON);
+        saveButtonStyle.down = skin.getDrawable(BUTTON_PRESSED);
+        saveButtonStyle.font = new BitmapFont(Gdx.files.internal(QUANTUM_SKIN_FONT_EXPORT_FNT));
+        TextButton saveButton = new TextButton("Save Level", squareButtonStyle);
         saveButton.setTransform(true);
         saveButton.setColor(new Color(97777));
 
         // Table
-        table = new Table();
+        Table table = new Table();
         table.add(rectButton).right();
         table.add(saveButton).right();
         table.row();
@@ -263,7 +260,7 @@ public class ConstructorScreen implements Screen {
         update();
     }
 
-    public void update(){
+    private void update(){
         long delta = TimeUtils.timeSinceMillis(lastTimeCounted);
         lastTimeCounted = TimeUtils.millis();
 
@@ -276,27 +273,27 @@ public class ConstructorScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        //Not used
     }
 
     @Override
     public void pause() {
-
+        //Not used
     }
 
     @Override
     public void resume() {
-
+        //Not used
     }
 
     @Override
     public void hide() {
-
+        //Not used
     }
 
     @Override
     public void dispose() {
-
+        //Not used
     }
 
 }
