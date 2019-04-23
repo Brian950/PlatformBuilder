@@ -3,8 +3,6 @@ package testcases;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.gui.constructor.ConstructorScreen;
-import com.gui.menu.MainMenuScreen;
-import com.mygdx.game.CharacterTest;
 import com.mygdx.game.PlatformBuilder;
 
 public class TestSetUp
