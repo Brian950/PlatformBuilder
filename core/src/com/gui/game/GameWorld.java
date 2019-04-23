@@ -1,22 +1,17 @@
-package com.mygdx.game;
+package com.gui.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Array;
-import com.logic.controller.InputController;
-import com.logic.command.Movements;
+import com.badlogic.gdx.utils.Logger;
 import com.logic.strategy.Context;
 import com.logic.strategy.JumpHigher;
+import com.mygdx.game.PlatformBuilder;
 import com.world.objects.Coin;
 import com.world.objects.RectangleObstacle;
 import com.world.objects.ScoreObject;
@@ -24,22 +19,18 @@ import com.world.objects.WorldObject;
 import com.world.player.BluePersonCharacter;
 import com.world.player.BluePersonExtension;
 import com.world.player.Character;
-import com.world.player.Player;
 
 public class GameWorld implements Screen {
 
-    private PlatformBuilder game;
     private SpriteBatch batch;
     private Stage stage;
-    private RectangleObstacle rect3;
-    private Coin coin;
     private Character character;
     private Array<WorldObject> obstacleArray;
     private Array<ScoreObject> coinArray;
 
 
     public GameWorld(PlatformBuilder game) {
-        this.game = game;
+        PlatformBuilder game1 = game;
         create();
     }
 
@@ -62,26 +53,24 @@ public class GameWorld implements Screen {
 
         obstacleArray = new Array<WorldObject>();
         coinArray = new Array<ScoreObject>();
-        coin = new Coin(new Vector2(600,0));
+        Coin coin = new Coin(new Vector2(600, 0));
         stage.addActor(coin);
         coinArray.add(coin);
 
 
         stage.addActor(character);
 
-        rect3 = new RectangleObstacle("wooden_crate.png",
+        RectangleObstacle rect3 = new RectangleObstacle("wooden_crate.png",
                 new Vector2(400, 0), new Vector2(100, 75));
 
         stage.addActor(rect3);
 
         obstacleArray.add(rect3);
-        System.out.println(rect3.getHeight());
-        System.out.println(rect3.getBounds());
     }
 
     @Override
     public void show() {
-
+        //Not used method.
     }
 
     @Override
@@ -89,10 +78,8 @@ public class GameWorld implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            if(character.getIsJumping() == Character.CharacterJumpingState.NOT_JUMPING) {
+        if(Gdx.input.isKeyPressed(Input.Keys.W) && character.getIsJumping() == Character.CharacterJumpingState.NOT_JUMPING){
                 character.jump();
-            }
         }
         if(Gdx.input.isKeyPressed(Input.Keys.D) && !character.isCanMoveRight()) {
                 character.moveBy(5, 0);
@@ -105,12 +92,9 @@ public class GameWorld implements Screen {
             character.setJumpHeight(context.executeStrategy(character.getJumpHeight()));
         }
 
-//        character.collidesWith(rect3);
-
         for(int i = 0; i < obstacleArray.size; i++){
             character.collidesWith(obstacleArray.get(i));
         }
-
 
         for(int i = 0; i < coinArray.size; i++) {
             assert coinArray.get(i) != null;
@@ -134,26 +118,26 @@ public class GameWorld implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        //No need to resize screen
     }
 
     @Override
     public void pause() {
-
+        //No need to pause
     }
 
     @Override
     public void resume() {
-
+        //No need to resume
     }
 
     @Override
     public void hide() {
-
+        //No need to hide
     }
 
     @Override
     public void dispose() {
-
+        //Not used
     }
 }

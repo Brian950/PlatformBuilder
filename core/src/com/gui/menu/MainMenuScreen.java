@@ -1,11 +1,9 @@
 package com.gui.menu;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -15,16 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gui.constructor.ConstructorScreen;
-import com.gui.game.GameScreen;
-import com.mygdx.game.GameWorld;
+import com.gui.game.GameWorld;
 import com.mygdx.game.PlatformBuilder;
-
-import javax.swing.text.TabableView;
-import java.awt.*;
 
 public class MainMenuScreen implements Screen {
 
@@ -59,7 +51,7 @@ public class MainMenuScreen implements Screen {
 		lastTimeCounted = TimeUtils.millis();
 		frameRate = Gdx.graphics.getFramesPerSecond();
 		framesLabel = new Label("FPS: "+frameRate, new Label.LabelStyle(frames, Color.BLACK));
-		framesLabel.setPosition(Gdx.graphics.getWidth()/50, Gdx.graphics.getHeight()-20);
+		framesLabel.setPosition((float) Gdx.graphics.getWidth()/50, (float) Gdx.graphics.getHeight()-20);
 
 		// Menu widgets
 		stage = new Stage();
@@ -92,7 +84,7 @@ public class MainMenuScreen implements Screen {
 		table.add(createButton).padBottom(20);
 		table.row();
 		table.add(playButton);
-		table.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+		table.setPosition((float)Gdx.graphics.getWidth()/2, (float) Gdx.graphics.getHeight()/2);
 
 		stage.addActor(framesLabel);
 		stage.addActor(table);

@@ -1,24 +1,13 @@
 package com.logic.command;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.world.player.Player;
 
 public class Movements {
 
     private boolean orientation = true;
-
-    private boolean powerUpUsed = true;
-
-    private float gravity = -1000;
-
     private Vector2 position;
-
     private Vector2 velocity;
-
     private Command moveRight;
     private Command moveLeft;
     private Command jump;
@@ -35,7 +24,6 @@ public class Movements {
 
     public void jump() {
         jump.executeMovement(position.x, orientation);
-        powerUpUsed = true;
         position.y = jump.getPosition();
         bounds.y = jump.getPlayerBounds();
         velocity = jump.getVelocity();

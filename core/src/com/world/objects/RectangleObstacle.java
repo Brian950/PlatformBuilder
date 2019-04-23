@@ -6,14 +6,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class RectangleObstacle extends WorldObject {
-
-    private String fileName;
 
     // Properties
     private Vector2 position;
@@ -29,7 +26,6 @@ public class RectangleObstacle extends WorldObject {
         this.texture = new Texture(Gdx.files.internal(fileName));
         this.invalidTexture = new Texture(Gdx.files.internal("quantum/skin/window.9.png"));
 
-        this.fileName = fileName;
         this.colliding = false;
         this.position = position;
         this.size = size;
@@ -52,11 +48,11 @@ public class RectangleObstacle extends WorldObject {
     @Override
     public void moveBy(float x, float y){
 
-        if(getX()+x > 0 & getX()+x < 900) {
+        if(getX()+x > 0 && getX()+x < 900) {
             setX(getX() + x);
             bounds.x += x;
         }
-        if(getY()+y > 0 & getY()+y < 600) {
+        if(getY()+y > 0 && getY()+y < 600) {
             setY(getY() + y);
             bounds.y += y;
         }

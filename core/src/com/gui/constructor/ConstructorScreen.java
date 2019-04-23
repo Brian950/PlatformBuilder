@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -18,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.logic.constructor.CoinFactory;
 import com.logic.constructor.FactoryProducer;
 import com.logic.constructor.ObjectFactory;
 import com.logic.logging.Dispatcher;
@@ -26,7 +24,6 @@ import com.logic.logging.LogContext;
 import com.logic.logging.LoggingService;
 import com.mygdx.game.PlatformBuilder;
 import com.world.levels.SaveLevel;
-import com.world.objects.RectangleObstacle;
 import com.world.objects.WorldObject;
 
 public class ConstructorScreen implements Screen {
@@ -43,7 +40,6 @@ public class ConstructorScreen implements Screen {
     private TextButton coinBoxButton;
     private TextButton saveButton;
     private TextureAtlas buttonAtlas;
-    private Skin skin;
     private float frameRate;
     private float sinceChange;
     private long lastTimeCounted;
@@ -64,7 +60,7 @@ public class ConstructorScreen implements Screen {
     public void create(){
         batch = new SpriteBatch();
         buttonAtlas = new TextureAtlas(Gdx.files.internal("quantum/skin/quantum-horizon-ui.atlas"));
-        skin = new Skin();
+        Skin skin = new Skin();
         skin.addRegions(buttonAtlas);
 
         // Dispatcher
@@ -79,7 +75,7 @@ public class ConstructorScreen implements Screen {
         lastTimeCounted = TimeUtils.millis();
         frameRate = Gdx.graphics.getFramesPerSecond();
         framesLabel = new Label("FPS: "+frameRate, new Label.LabelStyle(frames, Color.BLACK));
-        framesLabel.setPosition(Gdx.graphics.getWidth()/50, Gdx.graphics.getHeight()-20);
+        framesLabel.setPosition((float) Gdx.graphics.getWidth()/50, (float)Gdx.graphics.getHeight()-20);
 
         // Buttons
         TextButton.TextButtonStyle squareButtonStyle = new TextButton.TextButtonStyle();
@@ -132,7 +128,7 @@ public class ConstructorScreen implements Screen {
         table.add(coinButton).right();
         table.row();
         table.add(coinBoxButton).right();
-        table.setPosition(Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()-120);
+        table.setPosition((float) Gdx.graphics.getWidth()/4,(float) Gdx.graphics.getHeight()-120);
 
         // WorldObject array
         obstacleArray = new Array<WorldObject>();

@@ -18,16 +18,13 @@ public class Character extends Image {
     }
 
 
-    private final float INITIAL_JUMP_HEIGHT = 500;
+    private final static float INITIAL_JUMP_HEIGHT = 500;
 
     private String name;
-    private String characterTexturePath;
     private int characterScore;
     private float jumpHeight;
     private Rectangle characterHitBox;
-    private Drawable drawableRegion;
     private Vector2 characterPosition;
-    private Vector2 characterSize;
     private Vector2 characterVelocity;
     private Vector2 characterAcceleration;
     private float floor = 0;
@@ -35,14 +32,14 @@ public class Character extends Image {
     private boolean canMoveRight;
     private boolean canMoveLeft;
     private Movements characterMovements;
-    protected CharacterExtension characterExtension = null;
+    CharacterExtension characterExtension = null;
 
     public Character(String characterName, Vector2 characterPosition, Vector2 characterSize) {
         super((new Texture("sprites/CharSprite.png")));
 
         name = characterName;
         this.characterPosition = characterPosition;
-        this.characterSize = characterSize;
+        Vector2 characterSize1 = characterSize;
 
         canMoveLeft = false;
         canMoveRight = false;
@@ -91,9 +88,9 @@ public class Character extends Image {
     }
 
     public void updateCharacter() {
-        float DELTA_TIME = Gdx.graphics.getDeltaTime();
-        characterVelocity.add(characterAcceleration.x * DELTA_TIME, characterAcceleration.y * DELTA_TIME);
-        moveBy(characterVelocity.x * DELTA_TIME, characterVelocity.y * DELTA_TIME);
+        float deltaTime = Gdx.graphics.getDeltaTime();
+        characterVelocity.add(characterAcceleration.x * deltaTime, characterAcceleration.y * deltaTime);
+        moveBy(characterVelocity.x * deltaTime, characterVelocity.y * deltaTime);
 
         if(characterHitBox.y <= floor + 10) {
             characterCanNowJump();
@@ -111,7 +108,7 @@ public class Character extends Image {
 
     @Override
     public void moveBy(float x, float y){
-        if(getX()+x >= 0 & getX()+x <= 900) {
+        if(getX()+x >= 0 && getX()+x <= 900) {
             if(x == -5){
                 characterMovements.moveLeft();
             }else if(x == 5){
@@ -121,7 +118,7 @@ public class Character extends Image {
             characterHitBox.x = characterMovements.getBounds().x + x;
         }
 
-        if(getY()+y >= floor & getY()+y <= 600) {
+        if(getY()+y >= floor && getY()+y <= 600) {
             setY(getY() + y);
             characterHitBox.y += y;
         }
@@ -158,7 +155,7 @@ public class Character extends Image {
     }
 
     public void changeTexture(String newTexture) {
-        drawableRegion = new TextureRegionDrawable(new Texture(newTexture));
+        Drawable drawableRegion = new TextureRegionDrawable(new Texture(newTexture));
         super.setDrawable(drawableRegion);
 
     }
