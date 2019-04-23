@@ -68,6 +68,16 @@ public class Coin extends WorldObject implements ScoreObject {
     }
 
     @Override
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    @Override
+    public Vector2 getSize() {
+        return size;
+    }
+
+    @Override
     public int getScore() {
         return score;
     }

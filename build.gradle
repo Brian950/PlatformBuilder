@@ -10,10 +10,13 @@ buildscript {
         google()
     }
     dependencies {
-        
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7"
+
 
     }
 }
+
+
 
 allprojects {
     apply plugin: "eclipse"
@@ -48,20 +51,34 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+        compile "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7"
+
     }
 }
 
 project(":core") {
     apply plugin: "java"
+    apply plugin: "org.sonarqube"
 
-
+    sonarqube {
+        properties {
+            property "sonar.sources", "src/com/"
+            property "sonar.jacoco.reportPaths", file("${buildDir}/reports/coverage")
+        }
+    }
+    
     dependencies {
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        compile "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7"
+        compile "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.1"
+
     }
 }
+
+
 
 tasks.eclipse.doLast {
     delete ".project"

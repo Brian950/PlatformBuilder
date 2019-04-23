@@ -8,8 +8,7 @@ public class MoveRightOnCommand implements Command
     private Vector2 position;
     private Rectangle bounds;
 
-    public MoveRightOnCommand(Vector2 playerPos, Rectangle playerBounds)
-    {
+    public MoveRightOnCommand(Vector2 playerPos, Rectangle playerBounds) {
         position = playerPos;
         bounds = playerBounds;
     }
