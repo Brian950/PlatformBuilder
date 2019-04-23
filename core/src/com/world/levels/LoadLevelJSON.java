@@ -12,7 +12,7 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class LoadLevel {
+public class LoadLevelJSON {
 
     private String levelName;
     private File file;
@@ -23,12 +23,12 @@ public class LoadLevel {
     private final Type objectType = new TypeToken<ArrayList<String>>() {
     }.getType();
 
-    public LoadLevel(){
+    public LoadLevelJSON(String filePath){
         JSONParser jsonParser = new JSONParser();
 
         try
         {
-            FileReader reader = new FileReader("levels\\Level.json");
+            FileReader reader = new FileReader(filePath);
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 

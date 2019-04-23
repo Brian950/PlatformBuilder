@@ -23,7 +23,7 @@ public class TestSetUp
             new LwjglApplication(new PlatformBuilder(), cfg);
 
         }else if(choice == 1){
-            new LwjglApplication(new CharacterTest(), cfg);
+            //new LwjglApplication(new CharacterTest(), cfg);
         }
     }
 

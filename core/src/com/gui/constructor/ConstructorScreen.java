@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.logic.constructor.FactoryProducer;
 import com.logic.constructor.ObjectFactory;
-import com.logic.logging.Dispatcher;
+import com.logic.logging.LoggingDispatcher;
 import com.logic.logging.LogContext;
 import com.logic.logging.LoggingService;
 import com.mygdx.game.PlatformBuilder;
@@ -42,7 +42,7 @@ public class ConstructorScreen implements Screen {
     private long lastTimeCounted;
     private Array<WorldObject> obstacleArray;
     private ObjectFactory obj;
-    private Dispatcher dispatcher;
+    private LoggingDispatcher dispatcher;
     private LoggingService logService;
 
     // Enable/disable logging
@@ -61,7 +61,7 @@ public class ConstructorScreen implements Screen {
         skin.addRegions(buttonAtlas);
 
         // Dispatcher
-        dispatcher = Dispatcher.getInstance();
+        dispatcher = LoggingDispatcher.getInstance();
 
         // Services
         logService = new LoggingService();

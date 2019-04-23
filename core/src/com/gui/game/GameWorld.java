@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.logic.constructor.builder.interceptor.BuilderDispatcher;
 import com.logic.strategy.Context;
 import com.logic.strategy.JumpHigher;
 import com.mygdx.game.PlatformBuilder;
@@ -26,6 +27,7 @@ public class GameWorld implements Screen {
     private Character character;
     private Array<WorldObject> obstacleArray;
     private Array<ScoreObject> coinArray;
+    private BuilderDispatcher dispatcher;
 
 
     public GameWorld() {
@@ -44,6 +46,11 @@ public class GameWorld implements Screen {
             bluePersonExtension.bluePersonReady();
             character.changeTexture("sprites/BluePerson.png");
         }
+
+
+        // Level loading
+        dispatcher = new BuilderDispatcher();
+
 
         obstacleArray = new Array<WorldObject>();
         coinArray = new Array<ScoreObject>();
