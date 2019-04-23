@@ -18,7 +18,6 @@ public class Character extends Image {
     }
 
     private String name;
-
     private String characterTexturePath;
     private int characterScore;
     private float jumpHeight;
@@ -76,7 +75,6 @@ public class Character extends Image {
         }
         if(characterHitBox.x + characterHitBox.getWidth() >= worldObjectBounds.x && characterHitBox.x <= worldObjectBounds.x + worldObject.getWidth()) {
             floor = worldObject.getY() + worldObject.getHeight();
-            System.out.println("On Top");
             return true;
         }
 
@@ -103,7 +101,7 @@ public class Character extends Image {
         moveBy(characterVelocity.x * DELTA_TIME, characterVelocity.y * DELTA_TIME);
 
         if(characterHitBox.y <= floor + 10) {
-            isJumping = CharacterJumpingState.NOT_JUMPING;
+            characterCanNowJump();
         }
     }
 

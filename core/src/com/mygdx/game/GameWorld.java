@@ -55,7 +55,7 @@ public class GameWorld implements Screen {
 
         coin = new Coin(new Vector2(600,0));
 
-        character = new BluePersonCharacter("BluePerson" , new Vector2(0,0), new Vector2(100, 75));
+        character = new BluePersonCharacter("BluePerson" , new Vector2(0,0), new Vector2(75, 100));
 
         BluePersonExtension bluePersonExtension = (BluePersonExtension) character.getCharacterExtension("BluePerson");
 
@@ -68,7 +68,7 @@ public class GameWorld implements Screen {
         stage.addActor(character);
 
         stage.addActor(coin);
-        rect3 = new RectangleObstacle("badlogic.jpg",
+        rect3 = new RectangleObstacle("wooden_crate.png",
                 new Vector2(400, 0), new Vector2(100, 75));
 
         stage.addActor(rect3);
@@ -88,34 +88,31 @@ public class GameWorld implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            if(player.getIsJumping() == Player.jumpingState.CAN_JUMP) {
-                player.jump(400);
+            if(character.getIsJumping() == Character.CharacterJumpingState.NOT_JUMPING) {
+                character.jump(500);
+                System.out.println("Jump");
             }
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.D) && !player.isBlockedRight()) {
-                player.moveBy(5, 0);
+        if(Gdx.input.isKeyPressed(Input.Keys.D) && !character.isCanMoveRight()) {
+                character.moveBy(5, 0);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.A) && !player.isBlockedLeft()) {
-                player.moveBy(-5, 0);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-//                player.moveBy(0, -10);
-            character.moveBy(5,0);
+        if(Gdx.input.isKeyPressed(Input.Keys.A) && !character.isCanMoveLeft()) {
+                character.moveBy(-5, 0);
         }
 
+        if(character.collidesWith(rect3)){
 
-        if(player.collidesWith(rect3)){
-            player.onCollision();
         }
 
         if(coin != null) {
-            if (player.collidesWith((ScoreObject) coin)) {
+            if (character.collidesWith((ScoreObject) coin)) {
                 System.out.println("Got it");
                 coin.addAction(Actions.removeActor());
                 coin = null;
             }
         }
-        player.update();
+
+        character.updateCharacter();
 
         stage.act();
         stage.draw();
