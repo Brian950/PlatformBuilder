@@ -8,7 +8,7 @@ public class BluePersonCharacter extends Character {
 
     public BluePersonCharacter(String characterName, Vector2 characterPosition, Vector2 characterSize) {
         super(characterName, characterPosition, characterSize);
-
+        super.setJumpHeight(250);
     }
 
 

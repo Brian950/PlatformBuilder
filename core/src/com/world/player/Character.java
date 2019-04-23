@@ -17,13 +17,14 @@ public class Character extends Image {
         IS_JUMPING, NOT_JUMPING
     }
 
+
+    private final float INITIAL_JUMP_HEIGHT = 500;
+
     private String name;
     private String characterTexturePath;
     private int characterScore;
     private float jumpHeight;
     private Rectangle characterHitBox;
-    private Texture characterTexture;
-    private Texture characterJumpTexture;
     private Drawable drawableRegion;
     private Vector2 characterPosition;
     private Vector2 characterSize;
@@ -31,14 +32,10 @@ public class Character extends Image {
     private Vector2 characterAcceleration;
     private float floor = 0;
     private CharacterJumpingState isJumping;
-    private boolean isCharacterColliding;
     private boolean canMoveRight;
     private boolean canMoveLeft;
-
     private Movements characterMovements;
-
     protected CharacterExtension characterExtension = null;
-
 
     public Character(String characterName, Vector2 characterPosition, Vector2 characterSize) {
         super((new Texture("sprites/CharSprite.png")));
@@ -47,7 +44,6 @@ public class Character extends Image {
         this.characterPosition = characterPosition;
         this.characterSize = characterSize;
 
-        isCharacterColliding = false;
         canMoveLeft = false;
         canMoveRight = false;
         isJumping = CharacterJumpingState.NOT_JUMPING;
@@ -59,8 +55,8 @@ public class Character extends Image {
         setBounds(characterPosition.x , characterPosition.y,
                 characterSize.x, characterSize.y);
         characterScore = 0;
-        jumpHeight = 0;
-        characterMovements = new Movements(this.characterPosition, this.characterHitBox, 500);
+        jumpHeight = 500;
+        characterMovements = new Movements(this.characterPosition, this.characterHitBox, INITIAL_JUMP_HEIGHT);
 
     }
 
@@ -81,7 +77,6 @@ public class Character extends Image {
         floor = 0;
         canMoveRight = false;
         canMoveLeft = false;
-        isCharacterColliding = false;
         return false;
     }
 
@@ -102,10 +97,11 @@ public class Character extends Image {
 
         if(characterHitBox.y <= floor + 10) {
             characterCanNowJump();
+            setJumpHeight(INITIAL_JUMP_HEIGHT);
         }
     }
 
-    public void jump(float jumpHeight) {
+    public void jump() {
         isJumping = CharacterJumpingState.IS_JUMPING;
         characterMovements.jump();
         characterVelocity.y = characterMovements.getVelocity().y;
@@ -166,4 +162,18 @@ public class Character extends Image {
         super.setDrawable(drawableRegion);
 
     }
+
+    public float getJumpHeight() {
+        return jumpHeight;
+    }
+
+    public int getCharacterScore() {
+        return characterScore;
+    }
+
+    public void setJumpHeight(float jumpHeight) {
+        this.jumpHeight = jumpHeight;
+        characterMovements = new Movements(this.characterPosition, this.characterHitBox, jumpHeight);
+    }
+
 }

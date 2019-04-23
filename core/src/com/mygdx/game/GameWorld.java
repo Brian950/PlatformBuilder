@@ -12,8 +12,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.utils.Array;
 import com.logic.controller.InputController;
 import com.logic.command.Movements;
+import com.logic.strategy.Context;
+import com.logic.strategy.JumpHigher;
 import com.world.objects.Coin;
 import com.world.objects.RectangleObstacle;
 import com.world.objects.ScoreObject;
@@ -28,12 +31,11 @@ public class GameWorld implements Screen {
     private PlatformBuilder game;
     private SpriteBatch batch;
     private Stage stage;
-    private Player player;
-    private RectangleObstacle rect1;
-    private RectangleObstacle rect2;
     private RectangleObstacle rect3;
     private Coin coin;
     private Character character;
+    private Array<WorldObject> obstacleArray;
+    private Array<ScoreObject> coinArray;
 
 
     public GameWorld(PlatformBuilder game) {
@@ -45,18 +47,12 @@ public class GameWorld implements Screen {
         create();
     }
 
-    public void create(){
+    public void create()    {
         batch = new SpriteBatch();
-        player = new Player("sprites/CharSprite.png",new Vector2(100,0), new Vector2(100,75));
-
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-        stage.addActor(player);
-
-        coin = new Coin(new Vector2(600,0));
 
         character = new BluePersonCharacter("BluePerson" , new Vector2(0,0), new Vector2(75, 100));
-
         BluePersonExtension bluePersonExtension = (BluePersonExtension) character.getCharacterExtension("BluePerson");
 
         if(bluePersonExtension != null) {
@@ -64,15 +60,21 @@ public class GameWorld implements Screen {
             character.changeTexture("sprites/BluePerson.png");
         }
 
+        obstacleArray = new Array<WorldObject>();
+        coinArray = new Array<ScoreObject>();
+        coin = new Coin(new Vector2(600,0));
+        stage.addActor(coin);
+        coinArray.add(coin);
+
 
         stage.addActor(character);
 
-        stage.addActor(coin);
         rect3 = new RectangleObstacle("wooden_crate.png",
                 new Vector2(400, 0), new Vector2(100, 75));
 
         stage.addActor(rect3);
 
+        obstacleArray.add(rect3);
         System.out.println(rect3.getHeight());
         System.out.println(rect3.getBounds());
     }
@@ -89,8 +91,7 @@ public class GameWorld implements Screen {
 
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
             if(character.getIsJumping() == Character.CharacterJumpingState.NOT_JUMPING) {
-                character.jump(500);
-                System.out.println("Jump");
+                character.jump();
             }
         }
         if(Gdx.input.isKeyPressed(Input.Keys.D) && !character.isCanMoveRight()) {
@@ -99,17 +100,28 @@ public class GameWorld implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.A) && !character.isCanMoveLeft()) {
                 character.moveBy(-5, 0);
         }
-
-        if(character.collidesWith(rect3)){
-
+        if(Gdx.input.isKeyPressed(Input.Keys.S))    {
+            Context context = new Context(new JumpHigher());
+            character.setJumpHeight(context.executeStrategy(character.getJumpHeight()));
         }
 
-        if(coin != null) {
-            if (character.collidesWith((ScoreObject) coin)) {
-                System.out.println("Got it");
-                coin.addAction(Actions.removeActor());
-                coin = null;
+//        character.collidesWith(rect3);
+
+        for(int i = 0; i < obstacleArray.size; i++){
+            character.collidesWith(obstacleArray.get(i));
+        }
+
+
+        for(int i = 0; i < coinArray.size; i++) {
+            assert coinArray.get(i) != null;
+            if(character.collidesWith(coinArray.get(i))){
+                coinArray.removeIndex(i);
             }
+        }
+
+        if(character.getX() > 900) {
+            System.out.println("Game Over ");
+            System.out.println("Score: " + character.getCharacterScore());
         }
 
         character.updateCharacter();

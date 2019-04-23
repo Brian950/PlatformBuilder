@@ -19,58 +19,29 @@ public class Movements {
 
     private Vector2 velocity;
 
-    private Vector2 acceleration;
     private Command moveRight;
     private Command moveLeft;
     private Command jump;
     private Rectangle bounds;
-    private boolean isJumping;
 
     public Movements(Vector2 playerPos, Rectangle playerBounds, float jumpHeight){
         position = playerPos;
         bounds = playerBounds;
         velocity = new Vector2();
-        gravity = -1000;
         moveRight = new MoveRightOnCommand(playerPos, playerBounds);
         moveLeft = new MoveLeftOnCommand(playerPos, playerBounds);
-        jump = new JumpOnCommand(playerPos, playerBounds);
-        acceleration = new Vector2(0, gravity);
-    }
-
-
-    public void update()
-    {
-        float dt = Gdx.graphics.getDeltaTime();
-        velocity.add(acceleration.x * dt, acceleration.y * dt);
-        position.add(velocity.x * dt, velocity.y * dt);
-
-        if (position.y <= 0){ // hit ground, so bounce
-            position.y = 0;
-            isJumping = false;
-            /*if(powerUpUsed){
-                jump.setJumpHeight(500);
-            }*/
-        }
-        if ((position.x <= 0)){
-            position.x = 0;
-        }
-/*        if (position.x >= Gdx.graphics.getWidth() - player.getRegionWidth()/2){
-            position.x = Gdx.graphics.getWidth() - player.getRegionWidth()/2;
-        }*/
-
+        jump = new JumpOnCommand(playerPos, playerBounds, jumpHeight);
     }
 
     public void jump() {
         jump.executeMovement(position.x, orientation);
-        boolean isJumping = true;
         powerUpUsed = true;
         position.y = jump.getPosition();
         bounds.y = jump.getPlayerBounds();
         velocity = jump.getVelocity();
     }
 
-    public void moveRight()
-    {
+    public void moveRight() {
         moveRight.executeMovement(position.x, orientation);
         orientation = true;
         position.x = moveRight.getPosition();
@@ -88,20 +59,11 @@ public class Movements {
         return position;
     }
 
-    public Rectangle getBounds() { return bounds; }
+    public Rectangle getBounds() {
+        return bounds;
+    }
 
     public Vector2 getVelocity(){
         return  velocity;
     }
-    /*public boolean isJumping() {
-        return isJumping;
-    }*/
-
-    /*public float getJumpHeight(){
-        return jump.getJumpHeight();
-    }*/
-
-   /* public void setPowerUpUsed(boolean powerUpUsed) {
-        this.powerUpUsed = powerUpUsed;
-    }*/
 }

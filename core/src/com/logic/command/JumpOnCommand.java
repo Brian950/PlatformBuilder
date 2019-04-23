@@ -12,10 +12,10 @@ public class JumpOnCommand implements Command {
     private Rectangle bounds;
     private float jumpHeight = 750;
 
-    public JumpOnCommand(Vector2 playerPos, Rectangle playerBounds)
-    {
+    public JumpOnCommand(Vector2 playerPos, Rectangle playerBounds, float jumpHeight) {
         position = playerPos;
         bounds = playerBounds;
+        this.jumpHeight = jumpHeight;
     }
     public void executeMovement(float pos, boolean orientation)
     {
@@ -32,4 +32,7 @@ public class JumpOnCommand implements Command {
         return velocity;
     }
 
+    public void setJumpHeight(float jumpHeight) {
+        this.jumpHeight = jumpHeight;
+    }
 }
