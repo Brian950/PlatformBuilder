@@ -5,3 +5,4 @@ public interface IBuilderHandler {
     String getData(String data, String type);
 
 }
+

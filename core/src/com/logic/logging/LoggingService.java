@@ -7,7 +7,7 @@ public class LoggingService {
 
     }
 
-    public void log(LogContext context, Dispatcher dispatcher){
+    public void log(LogContext context, LoggingDispatcher dispatcher){
         LoggingInterceptor logMessage = ConcreteLoggingInterceptor.getInstance();
         dispatcher.register(logMessage);
         dispatcher.preRequest(context);

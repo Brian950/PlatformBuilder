@@ -5,3 +5,4 @@ public interface IHandler {
     String getData(String data);
 
 }
+

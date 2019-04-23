@@ -12,3 +12,4 @@ public class RectFactory extends ObjectFactory {
             return new RectangleObstacle("badlogic.jpg",new Vector2(50,50),new Vector2(100,100));
     }
 }
+

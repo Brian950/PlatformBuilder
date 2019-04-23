@@ -2,13 +2,13 @@ package com.logic.logging;
 
 import java.util.ArrayList;
 
-public class Dispatcher implements LoggingInterceptor {
+public class LoggingDispatcher implements LoggingInterceptor {
 
-    private static Dispatcher dispatcher;
+    private static LoggingDispatcher dispatcher;
     private ArrayList<LoggingInterceptor> interceptors = new ArrayList<LoggingInterceptor>();
 
 
-    public Dispatcher(){
+    public LoggingDispatcher(){
 
     }
 
@@ -38,9 +38,9 @@ public class Dispatcher implements LoggingInterceptor {
         interceptors.remove(i);
     }
 
-    public static Dispatcher getInstance(){
+    public static LoggingDispatcher getInstance(){
         if(dispatcher == null){
-            return new Dispatcher();
+            return new LoggingDispatcher();
         }
         else
             return dispatcher;
