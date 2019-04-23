@@ -9,10 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.logic.command.Movements;
-import com.world.objects.RectangleObstacle;
 import com.world.objects.ScoreObject;
 import com.world.objects.WorldObject;
+import com.world.objects.RectangleObstacle;
 import org.lwjgl.Sys;
+
 
 
 public class Player extends Image {
