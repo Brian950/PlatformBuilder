@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -17,6 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.gui.menu.MainMenuScreen;
+import com.logic.constructor.CoinFactory;
 import com.logic.constructor.FactoryProducer;
 import com.logic.constructor.ObjectFactory;
 import com.logic.logging.LoggingDispatcher;
@@ -44,13 +47,15 @@ public class ConstructorScreen implements Screen {
     private ObjectFactory obj;
     private LoggingDispatcher dispatcher;
     private LoggingService logService;
+    private MainMenuScreen mainMenu;
 
     // Enable/disable logging
     private boolean LOG_STATUS = true;
 
 
-    public ConstructorScreen(PlatformBuilder game){
+    public ConstructorScreen(PlatformBuilder game, MainMenuScreen mainMenu){
         this.game = game;
+        this.mainMenu = mainMenu;
         create();
     }
 
@@ -125,7 +130,7 @@ public class ConstructorScreen implements Screen {
         table.add(coinButton).right();
         table.row();
         table.add(coinBoxButton).right();
-        table.setPosition((float) Gdx.graphics.getWidth()/4,(float) Gdx.graphics.getHeight()-120);
+        table.setPosition(Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()-120);
 
         // WorldObject array
         obstacleArray = new Array<WorldObject>();
@@ -226,8 +231,10 @@ public class ConstructorScreen implements Screen {
                 SaveLevel save = new SaveLevel("Level", obstacleArray);
                 save.saveToFile();
                 logService.log(new LogContext("Level saved.", LOG_STATUS), dispatcher);
+                game.setScreen(mainMenu);
             }
         });
+
     }
 
     @Override

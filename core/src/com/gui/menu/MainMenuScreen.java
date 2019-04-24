@@ -100,7 +100,7 @@ public class MainMenuScreen implements Screen {
 		batch.end();
 
 		if(createButton.isPressed()){
-			game.setScreen(new ConstructorScreen(game));
+			game.setScreen(new ConstructorScreen(game, this));
 			dispose();
 		}
 		else if(playButton.isPressed()){
