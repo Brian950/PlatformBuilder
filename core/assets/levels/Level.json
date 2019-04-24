@@ -1,8 +1,53 @@
 [
   {
     "object": "RectangleObstacle",
-    "x": 334.0,
-    "y": 0.5,
+    "x": 260.0,
+    "y": 2.5,
+    "size": {
+      "x": 200.0,
+      "y": 75.0
+    }
+  },
+  {
+    "object": "RectangleObstacle",
+    "x": 335.0,
+    "y": 72.5,
+    "size": {
+      "x": 200.0,
+      "y": 75.0
+    }
+  },
+  {
+    "object": "RectangleObstacle",
+    "x": 533.0,
+    "y": 72.5,
+    "size": {
+      "x": 200.0,
+      "y": 75.0
+    }
+  },
+  {
+    "object": "RectangleObstacle",
+    "x": 460.0,
+    "y": 139.5,
+    "size": {
+      "x": 200.0,
+      "y": 75.0
+    }
+  },
+  {
+    "object": "RectangleObstacle",
+    "x": 581.0,
+    "y": 213.5,
+    "size": {
+      "x": 200.0,
+      "y": 75.0
+    }
+  },
+  {
+    "object": "RectangleObstacle",
+    "x": 705.0,
+    "y": 287.5,
     "size": {
       "x": 200.0,
       "y": 75.0

@@ -94,3 +94,15 @@
 [2019/04/24 13:06:34] Application started.
 [2019/04/24 13:06:35] Rectangle added to scene.
 [2019/04/24 13:06:40] Level saved.
+[2019/04/24 13:09:56] Application started.
+[2019/04/24 13:09:57] Square added to screen.
+[2019/04/24 13:10:02] Rectangle added to scene.
+[2019/04/24 13:10:10] Level saved.
+[2019/04/24 13:39:53] Application started.
+[2019/04/24 13:39:54] Rectangle added to scene.
+[2019/04/24 13:39:56] Rectangle added to scene.
+[2019/04/24 13:39:59] Rectangle added to scene.
+[2019/04/24 13:40:02] Rectangle added to scene.
+[2019/04/24 13:40:07] Rectangle added to scene.
+[2019/04/24 13:40:10] Rectangle added to scene.
+[2019/04/24 13:40:14] Level saved.

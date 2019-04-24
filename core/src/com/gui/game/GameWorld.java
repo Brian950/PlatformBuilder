@@ -155,10 +155,12 @@ public class GameWorld implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.W) && character.getIsJumping() == Character.CharacterJumpingState.NOT_JUMPING){
                 character.jump();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.D) && !character.isCanMoveRight()) {
+//        if(Gdx.input.isKeyPressed(Input.Keys.D) && !character.isCanMoveRight()) {
+        if(Gdx.input.isKeyPressed(Input.Keys.D) && character.getX() + character.getWidth() < character.getxLimit()) {
                 character.moveBy(1, 0);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.A) && !character.isCanMoveLeft()) {
+        if(Gdx.input.isKeyPressed(Input.Keys.A) && character.getX() > character.getBackwardLimit()) {
+//        if(Gdx.input.isKeyPressed(Input.Keys.A) && !character.isCanMoveLeft()) {
                 character.moveBy(-1, 0);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S))    {
@@ -188,6 +190,10 @@ public class GameWorld implements Screen {
                 coinBoxObjects.remove(i);
                 break;
             }
+        }
+
+        for(int i = 0; i < actorArrayList.size; i++) {
+
         }
 
 
