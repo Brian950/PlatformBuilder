@@ -2,7 +2,6 @@ package com.world.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -28,12 +27,20 @@ public class Character extends Image {
     private Vector2 characterVelocity;
     private Vector2 characterAcceleration;
     private float floor = 0;
+
+    private float xLimit = 1000;
+
+    public float getBackwardLimit() {
+        return backwardLimit;
+    }
+
+    private float backwardLimit = 0;
+
     private CharacterJumpingState isJumping;
     private boolean canMoveRight;
     private boolean canMoveLeft;
     private Movements characterMovements;
     CharacterExtension characterExtension = null;
-
     public Character(String characterName, Vector2 characterPosition, Vector2 characterSize) {
         super((new Texture("sprites/CharSprite.png")));
 
@@ -60,17 +67,24 @@ public class Character extends Image {
         Rectangle worldObjectBounds = worldObject.getBounds();
         if(characterHitBox.x + characterHitBox.getWidth() == worldObject.getX() && characterHitBox.y <= worldObject.getHeight()) {
             canMoveRight = true;
+            xLimit = worldObject.getX();
+            System.out.println(xLimit);
             return true;
-        } else if (characterHitBox.x == worldObjectBounds.x + worldObject.getWidth() &&  characterHitBox.y <= worldObject.getHeight())  {
+        }
+        if (characterHitBox.x == worldObjectBounds.x + worldObject.getWidth() &&  characterHitBox.y <= worldObject.getHeight())  {
             canMoveLeft = true;
+            backwardLimit = worldObject.getX() + worldObject.getWidth();
             return true;
         }
         if(characterHitBox.x + characterHitBox.getWidth() >= worldObjectBounds.x && characterHitBox.x <= worldObjectBounds.x + worldObject.getWidth()) {
             floor = worldObject.getY() + worldObject.getHeight();
             return true;
         }
+        if(characterHitBox.y > worldObject.getHeight() + worldObject.getY()){
+            xLimit = 1000;
+            backwardLimit = 0;
+        }
 
-        floor = 0;
         canMoveRight = false;
         canMoveLeft = false;
         return false;
@@ -98,6 +112,7 @@ public class Character extends Image {
     }
 
     public void jump() {
+        floor = 0;
         isJumping = CharacterJumpingState.IS_JUMPING;
         characterMovements.jump();
         characterVelocity.y = characterMovements.getVelocity().y;
@@ -170,6 +185,10 @@ public class Character extends Image {
     public void setJumpHeight(float jumpHeight) {
         this.jumpHeight = jumpHeight;
         characterMovements = new Movements(this.characterPosition, this.characterHitBox, jumpHeight);
+    }
+
+    public float getxLimit() {
+        return xLimit;
     }
 
 }
