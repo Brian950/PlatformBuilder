@@ -104,7 +104,7 @@ public class MainMenuScreen implements Screen {
 			dispose();
 		}
 		else if(playButton.isPressed()){
-			game.setScreen(new GameWorld());
+			game.setScreen(new GameWorld(game, this));
 			dispose();
 		}
 

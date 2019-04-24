@@ -1,8 +1,10 @@
 package testcases;
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.gui.constructor.ConstructorScreen;
+import com.gui.game.GameWorld;
 import com.mygdx.game.PlatformBuilder;
 
 public class TestSetUp
@@ -23,7 +25,7 @@ public class TestSetUp
             new LwjglApplication(new PlatformBuilder(), cfg);
 
         }else if(choice == 1){
-            //new LwjglApplication(new CharacterTest(), cfg);
+            //new LwjglApplication((ApplicationListener) new GameWorld(), cfg);
         }
     }
 
