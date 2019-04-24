@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -19,15 +20,11 @@ import com.gui.menu.MainMenuScreen;
 import com.logic.constructor.builder.interceptor.BuilderDispatcher;
 import com.logic.constructor.builder.interceptor.BuilderFileContext;
 import com.logic.constructor.builder.interceptor.BuilderFileService;
-import com.logic.logging.LogContext;
 import com.logic.strategy.Context;
 import com.logic.strategy.JumpHigher;
 import com.mygdx.game.PlatformBuilder;
 import com.world.levels.Level;
-import com.world.levels.SaveLevel;
 import com.world.objects.*;
-import com.world.player.BluePersonCharacter;
-import com.world.player.BluePersonExtension;
 import com.world.player.Character;
 
 import java.util.ArrayList;
@@ -45,6 +42,7 @@ public class GameWorld implements Screen {
     private ArrayList<WorldObject> worldObjects;
     private ArrayList<Coin> coinObjects;
     private ArrayList<CoinBox> coinBoxObjects;
+    private Array<Actor> actorArrayList;
     private PlatformBuilder game;
     private MainMenuScreen mainScreen;
 
@@ -63,7 +61,7 @@ public class GameWorld implements Screen {
         batch = new SpriteBatch();
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-
+        actorArrayList = new Array<>();
 //        character = new BluePersonCharacter("BluePerson" , new Vector2(0,0), new Vector2(75, 100));
 //        BluePersonExtension bluePersonExtension = (BluePersonExtension) character.getCharacterExtension("BluePerson");
 //
@@ -104,7 +102,7 @@ public class GameWorld implements Screen {
             stage.addActor(coinObjects.get(x));
         }
         for(int x = 0; x < coinBoxObjects.size(); x++){
-            stage.addActor(coinObjects.get(x));
+            stage.addActor(coinBoxObjects.get(x));
         }
 
         // Add character
@@ -139,6 +137,8 @@ public class GameWorld implements Screen {
 
         stage.addActor(exitButton);
 
+        actorArrayList = stage.getActors();
+
     }
 
     @Override
@@ -151,28 +151,34 @@ public class GameWorld implements Screen {
         Gdx.gl.glClearColor(0,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
         if(Gdx.input.isKeyPressed(Input.Keys.W) && character.getIsJumping() == Character.CharacterJumpingState.NOT_JUMPING){
                 character.jump();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.D) && !character.isCanMoveRight()) {
-                character.moveBy(5, 0);
+                character.moveBy(1, 0);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A) && !character.isCanMoveLeft()) {
-                character.moveBy(-5, 0);
+                character.moveBy(-1, 0);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S))    {
             Context context = new Context(new JumpHigher());
             character.setJumpHeight(context.executeStrategy(character.getJumpHeight()));
         }
 
-        for(int i = 0; i < worldObjects.size(); i++){
-            character.collidesWith(worldObjects.get(i));
+        for (WorldObject worldObject : worldObjects) {
+            character.collidesWith(worldObject);
         }
+
+//        character.collidesWith(worldObjects);
+
+
 
         for(int i = 0; i < coinObjects.size(); i++) {
             assert coinObjects.get(i) != null;
             if(character.collidesWith((ScoreObject) coinObjects.get(i))){
                 coinObjects.remove(i);
+                break;
             }
         }
 
@@ -180,12 +186,16 @@ public class GameWorld implements Screen {
             assert coinBoxObjects.get(i) != null;
             if(character.collidesWith((ScoreObject) coinBoxObjects.get(i))){
                 coinBoxObjects.remove(i);
+                break;
             }
         }
+
 
         if(character.getX() > 900) {
             System.out.println("Game Over ");
             System.out.println("Score: " + character.getCharacterScore());
+            game.setScreen(new MainMenuScreen(game));
+            dispose();
         }
 
         character.updateCharacter();

@@ -1,0 +1,96 @@
+[2019/04/24 11:30:30] Application started.
+[2019/04/24 11:30:32] Rectangle added to scene.
+[2019/04/24 11:30:35] Square added to screen.
+[2019/04/24 11:30:38] CoinBox added to screen.
+[2019/04/24 11:30:46] Coin added to screen.
+[2019/04/24 11:30:49] Level saved.
+[2019/04/24 11:32:14] Application started.
+[2019/04/24 11:32:16] CoinBox added to screen.
+[2019/04/24 11:32:19] Coin added to screen.
+[2019/04/24 11:32:23] Square added to screen.
+[2019/04/24 11:32:27] Level saved.
+[2019/04/24 11:32:59] Application started.
+[2019/04/24 11:33:00] Coin added to screen.
+[2019/04/24 11:33:04] Rectangle added to scene.
+[2019/04/24 11:33:07] Square added to screen.
+[2019/04/24 11:33:12] Rectangle added to scene.
+[2019/04/24 11:33:19] Rectangle added to scene.
+[2019/04/24 11:33:24] CoinBox added to screen.
+[2019/04/24 11:33:27] Level saved.
+[2019/04/24 11:35:15] Application started.
+[2019/04/24 11:35:18] Rectangle added to scene.
+[2019/04/24 11:35:20] Level saved.
+[2019/04/24 11:36:23] Application started.
+[2019/04/24 11:36:25] Square added to screen.
+[2019/04/24 11:36:25] Square added to screen.
+[2019/04/24 11:36:29] Level saved.
+[2019/04/24 11:41:20] Application started.
+[2019/04/24 11:41:22] Rectangle added to scene.
+[2019/04/24 11:41:27] Rectangle added to scene.
+[2019/04/24 11:41:31] Level saved.
+[2019/04/24 11:46:15] Application started.
+[2019/04/24 11:46:17] CoinBox added to screen.
+[2019/04/24 11:46:19] CoinBox added to screen.
+[2019/04/24 11:46:23] Coin added to screen.
+[2019/04/24 11:46:26] Level saved.
+[2019/04/24 11:46:56] Application started.
+[2019/04/24 11:46:58] Coin added to screen.
+[2019/04/24 11:46:59] Coin added to screen.
+[2019/04/24 11:46:59] Coin added to screen.
+[2019/04/24 11:47:05] Level saved.
+[2019/04/24 11:48:20] Application started.
+[2019/04/24 11:48:22] Rectangle added to scene.
+[2019/04/24 11:48:27] Square added to screen.
+[2019/04/24 11:48:35] Level saved.
+[2019/04/24 11:49:16] Application started.
+[2019/04/24 11:49:17] Rectangle added to scene.
+[2019/04/24 11:49:31] Square added to screen.
+[2019/04/24 11:49:47] Level saved.
+[2019/04/24 11:49:49] Application started.
+[2019/04/24 11:49:50] Coin added to screen.
+[2019/04/24 11:49:51] Coin added to screen.
+[2019/04/24 11:50:06] Square added to screen.
+[2019/04/24 11:50:21] Rectangle added to scene.
+[2019/04/24 11:50:24] Level saved.
+[2019/04/24 11:54:46] Application started.
+[2019/04/24 11:54:47] Square added to screen.
+[2019/04/24 11:54:47] Square added to screen.
+[2019/04/24 11:55:17] Square added to screen.
+[2019/04/24 11:55:21] Level saved.
+[2019/04/24 12:02:43] Application started.
+[2019/04/24 12:02:44] Rectangle added to scene.
+[2019/04/24 12:02:46] Level saved.
+[2019/04/24 12:06:49] Application started.
+[2019/04/24 12:06:51] Square added to screen.
+[2019/04/24 12:07:00] Level saved.
+[2019/04/24 12:07:16] Application started.
+[2019/04/24 12:07:17] Square added to screen.
+[2019/04/24 12:07:18] Square added to screen.
+[2019/04/24 12:07:21] Level saved.
+[2019/04/24 12:07:51] Application started.
+[2019/04/24 12:07:53] CoinBox added to screen.
+[2019/04/24 12:07:53] CoinBox added to screen.
+[2019/04/24 12:07:53] CoinBox added to screen.
+[2019/04/24 12:07:53] CoinBox added to screen.
+[2019/04/24 12:08:01] Level saved.
+[2019/04/24 12:29:17] Application started.
+[2019/04/24 12:29:18] Square added to screen.
+[2019/04/24 12:29:18] Square added to screen.
+[2019/04/24 12:29:23] Level saved.
+[2019/04/24 12:29:24] Level saved.
+[2019/04/24 12:29:25] Application started.
+[2019/04/24 12:29:26] Square added to screen.
+[2019/04/24 12:29:29] Level saved.
+[2019/04/24 12:31:27] Application started.
+[2019/04/24 12:31:28] Square added to screen.
+[2019/04/24 12:31:39] Level saved.
+[2019/04/24 12:40:08] Application started.
+[2019/04/24 12:40:09] Square added to screen.
+[2019/04/24 12:40:11] Square added to screen.
+[2019/04/24 12:40:16] Level saved.
+[2019/04/24 12:51:59] Application started.
+[2019/04/24 12:52:00] Square added to screen.
+[2019/04/24 12:52:02] Level saved.
+[2019/04/24 13:06:34] Application started.
+[2019/04/24 13:06:35] Rectangle added to scene.
+[2019/04/24 13:06:40] Level saved.

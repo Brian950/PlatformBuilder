@@ -1,0 +1,11 @@
+[
+  {
+    "object": "RectangleObstacle",
+    "x": 334.0,
+    "y": 0.5,
+    "size": {
+      "x": 200.0,
+      "y": 75.0
+    }
+  }
+]

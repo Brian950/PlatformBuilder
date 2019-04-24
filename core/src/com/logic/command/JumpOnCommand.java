@@ -8,7 +8,7 @@ public class JumpOnCommand implements Command {
     private final Vector2 velocity = new Vector2();
     private Vector2 position;
     private Rectangle bounds;
-    private float jumpHeight = 750;
+    private float jumpHeight;
 
     public JumpOnCommand(Vector2 playerPos, Rectangle playerBounds, float jumpHeight) {
         position = playerPos;

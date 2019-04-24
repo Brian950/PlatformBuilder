@@ -2,6 +2,7 @@ package com.world.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -107,9 +108,9 @@ public class Character extends Image {
     @Override
     public void moveBy(float x, float y){
         if(getX()+x >= 0 && getX()+x <= 900) {
-            if(x == -5){
+            if(x < 0){
                 characterMovements.moveLeft();
-            }else if(x == 5){
+            }else if(x > 0){
                 characterMovements.moveRight();
             }
             setX(characterMovements.getPosition().x + x);
