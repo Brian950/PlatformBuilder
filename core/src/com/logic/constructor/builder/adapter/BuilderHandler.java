@@ -1,6 +1,8 @@
 package com.logic.constructor.builder.adapter;
 
 
+import java.util.ArrayList;
+
 public class BuilderHandler implements IBuilderHandler {
 
     private IHandler jsonHandler;
@@ -12,13 +14,13 @@ public class BuilderHandler implements IBuilderHandler {
     }
 
     @Override
-    public String getData(String filePath, String type) {
+    public ArrayList<String> getData(String filePath, String type) {
         if(type.equals("json"))
             return jsonHandler.getData(filePath);
         else if(type.equals("xml"))
             return xmlHandler.getData(filePath);
         else
-            return "Invalid File Type";
+            return null;
     }
 }
 

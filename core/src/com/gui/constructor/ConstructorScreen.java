@@ -32,8 +32,8 @@ import com.world.objects.WorldObject;
 public class ConstructorScreen implements Screen {
 
 
-    private static final String BUTTON = "BUTTON";
-    private static final String BUTTON_PRESSED = "BUTTON-pressed";
+    private static final String BUTTON = "button";
+    private static final String BUTTON_PRESSED = "button-pressed";
     private static final String QUANTUM_SKIN_FONT_EXPORT_FNT = "quantum/skin/font-export.fnt";
 
     private PlatformBuilder game;
@@ -232,6 +232,7 @@ public class ConstructorScreen implements Screen {
                 save.saveToFile();
                 logService.log(new LogContext("Level saved.", LOG_STATUS), dispatcher);
                 game.setScreen(mainMenu);
+                mainMenu.create();
             }
         });
 

@@ -20,7 +20,7 @@ public class BuilderDispatcher implements BuilderFileInterceptor{
     @Override
     public void postRequest(BuilderFileContext context) {
         BuilderFileInterceptor i = interceptors.get(interceptors.size()-1);
-        i.preRequest(context);
+        i.postRequest(context);
     }
 
     public void register(BuilderFileInterceptor interceptor){

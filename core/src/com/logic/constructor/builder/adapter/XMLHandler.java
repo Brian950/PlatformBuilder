@@ -1,15 +1,17 @@
 package com.logic.constructor.builder.adapter;
 
+import java.util.ArrayList;
+
 public class XMLHandler implements IHandler{
 
     public XMLHandler(){}
 
     @Override
-    public String getData(String data) {
+    public ArrayList<String> getData(String data) {
         return this.convertXML(data);
     }
 
-    public String convertXML(String filePath){
+    public ArrayList<String> convertXML(String filePath){
 
         /*
             We have not provided the implementation for this class
@@ -18,7 +20,7 @@ public class XMLHandler implements IHandler{
             we would simply repeat the same process but with an XML parsing library.
          */
 
-        return "xml";
+        return null;
     }
 
 }

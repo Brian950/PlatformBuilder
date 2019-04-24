@@ -7,9 +7,9 @@ import com.world.objects.WorldObject;
 public class RectFactory extends ObjectFactory {
     public WorldObject getObject(String obj) {
         if(obj.equals("Rectangle"))
-            return new RectangleObstacle("badlogic.jpg",new Vector2(50,50),new Vector2(200,75));
+            return new RectangleObstacle(new Vector2(50,50),new Vector2(200,75));
         else
-            return new RectangleObstacle("badlogic.jpg",new Vector2(50,50),new Vector2(100,100));
+            return new RectangleObstacle(new Vector2(50,50),new Vector2(100,100));
     }
 }
 

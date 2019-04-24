@@ -19,15 +19,13 @@ public class ConcreteBuilderInterceptor implements BuilderFileInterceptor {
 
     @Override
     public void preRequest(BuilderFileContext context) {
-
         this.fileHandler = new BuilderHandler();
         context.setData(fileHandler.getData(context.getFilepath(), context.getFileType()));
-
     }
 
     @Override
     public void postRequest(BuilderFileContext context) {
-
+        System.out.println("Context data: "+context.getdata());
         if(context.getLevelType().equals("normal"))
             this.builder = new LevelBuilder(context.getdata());
         else if(context.getLevelType().equals("reverse"))

@@ -12,14 +12,14 @@ public class JSONHandler implements IHandler{
     }
 
     @Override
-    public String getData(String data) {
+    public ArrayList<String> getData(String data) {
         return this.convertJSON(data);
     }
 
-    public String convertJSON(String filePath){
+    public ArrayList<String> convertJSON(String filePath){
         loadLevel = new LoadLevelJSON(filePath);
         ArrayList<String> data = loadLevel.getData();
-        return "json";
+        return data;
     }
 
 }

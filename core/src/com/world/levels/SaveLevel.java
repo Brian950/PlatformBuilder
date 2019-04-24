@@ -19,7 +19,12 @@ public class SaveLevel {
     public SaveLevel(String name, Array<WorldObject> obstacleArray){
         levelName = name;
         this.obstacleArray = obstacleArray;
-        file = new File("levels\\"+levelName+".json");
+
+        if(System.getProperty("os.name").equals("Linux"))
+            file = new File("levels/"+levelName+".json");
+        else if(System.getProperty("os.name").contains("Windows"))
+            file = new File("levels\\"+levelName+".json");
+
     }
 
     public void saveToFile(){

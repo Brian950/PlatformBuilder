@@ -21,9 +21,9 @@ public class RectangleObstacle extends WorldObject {
     private Texture invalidTexture;
     private Drawable drawable;
 
-    public RectangleObstacle(String fileName, Vector2 position, Vector2 size) {
-        super(new Texture(Gdx.files.internal(fileName)));
-        this.texture = new Texture(Gdx.files.internal(fileName));
+    public RectangleObstacle(Vector2 position, Vector2 size) {
+        super(new Texture(Gdx.files.internal("badlogic.jpg")));
+        this.texture = new Texture(Gdx.files.internal("badlogic.jpg"));
         this.invalidTexture = new Texture(Gdx.files.internal("quantum/skin/window.9.png"));
 
         this.colliding = false;

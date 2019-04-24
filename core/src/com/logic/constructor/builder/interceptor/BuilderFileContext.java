@@ -3,25 +3,27 @@ package com.logic.constructor.builder.interceptor;
 import com.logic.constructor.builder.LevelDirector;
 import com.world.levels.Level;
 
+import java.util.ArrayList;
+
 public class BuilderFileContext {
 
-    private String data;
+    private ArrayList<String> data;
     private String filepath;
     private String fileType;
     private String levelType;
     private Level level;
 
-    public BuilderFileContext(String filepath, String type, String levelType){
+    public BuilderFileContext(String filepath, String fileType, String levelType){
         this.filepath = filepath;
-        this.fileType = type;
+        this.fileType = fileType;
         this.levelType = levelType;
     }
 
-    public String getdata(){
+    public ArrayList<String> getdata(){
         return data;
     }
 
-    public void setData(String data){
+    public void setData(ArrayList<String> data){
         this.data = data;
     }
 
