@@ -170,13 +170,16 @@ public class GameWorld implements Screen {
             character.collidesWith(worldObject);
         }
 
-//        character.collidesWith(worldObjects);
-
-
 
         for(int i = 0; i < coinObjects.size(); i++) {
             assert coinObjects.get(i) != null;
             if(character.collidesWith((ScoreObject) coinObjects.get(i))){
+
+                for(Actor actor : stage.getActors()) {
+                    if (coinObjects.get(i).getX() == actor.getX() && coinObjects.get(i).getY() == actor.getY()) {
+                        actor.remove();
+                    }
+                }
                 coinObjects.remove(i);
                 break;
             }
@@ -185,6 +188,11 @@ public class GameWorld implements Screen {
         for(int i = 0; i < coinBoxObjects.size(); i++) {
             assert coinBoxObjects.get(i) != null;
             if(character.collidesWith((ScoreObject) coinBoxObjects.get(i))){
+                for(Actor actor : stage.getActors()) {
+                    if (coinBoxObjects.get(i).getX() == actor.getX() && coinBoxObjects.get(i).getY() == actor.getY()) {
+                        actor.remove();
+                    }
+                }
                 coinBoxObjects.remove(i);
                 break;
             }

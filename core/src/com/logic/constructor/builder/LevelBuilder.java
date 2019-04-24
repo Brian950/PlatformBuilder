@@ -47,8 +47,8 @@ public class LevelBuilder implements IBuilder {
                 CoinBox coinBox = new CoinBox(position);
                 coinBoxObjects.add(coinBox);
             }
-            createLevel();
         }
+        createLevel();
     }
 
     public void createLevel(){

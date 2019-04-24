@@ -49,7 +49,12 @@ public class RectangleObstacle extends WorldObject {
     public void moveBy(float x, float y){
 
         if(getX()+x > 0 && getX()+x < 900) {
-            setX(getX() + x);
+            float move = getX() + x;
+
+            if(x % 5 > 0)
+                move = 5*(Math.round(move/5));
+
+            setX(move);
             bounds.x += x;
         }
         if(getY()+y > 0 && getY()+y < 600) {

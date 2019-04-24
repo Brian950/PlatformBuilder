@@ -16,7 +16,8 @@ public class MoveLeftOnCommand implements Command {
 
     public void executeMovement(float pos, boolean orientation)
     {
-        position.x = (pos-1);
+        position.x = pos-1;
+        bounds.x = pos-1;
     }
 
 
