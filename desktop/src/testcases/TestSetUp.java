@@ -1,16 +1,16 @@
 package testcases;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.gui.constructor.ConstructorScreen;
-import com.gui.game.GameWorld;
 import com.mygdx.game.PlatformBuilder;
+import com.mygdx.game.desktop.DesktopLauncher;
 
 public class TestSetUp
 {
 
     private ConstructorScreen screen;
+    private LwjglApplication app;
 
     PlatformBuilder builder = new PlatformBuilder();
 
@@ -22,14 +22,15 @@ public class TestSetUp
         cfg.height = 600;
         cfg.width = 900;
         if(choice == 0) {
-            new LwjglApplication(new PlatformBuilder(), cfg);
-
-        }else if(choice == 1){
-            //new LwjglApplication((ApplicationListener) new GameWorld(), cfg);
+            app = new LwjglApplication(new PlatformBuilder(), cfg);
         }
     }
 
-    protected ConstructorScreen getConstructorScreen(){
+    protected ConstructorScreen getConstructorScreen() {
         return screen;
+    }
+
+    protected void runTests(Runnable run){
+        app.postRunnable(run);
     }
 }

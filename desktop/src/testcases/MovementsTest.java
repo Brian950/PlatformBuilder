@@ -19,12 +19,12 @@ public class MovementsTest extends TestSetUp
     private Vector2 position;
 
     public MovementsTest(){
-        super(1);
+       // super(1);
         playerPos = new Vector2();
         playerBounds = new Rectangle();
         velocity = new Vector2();
         position = new Vector2();
-        moveTest = new Movements(playerPos, playerBounds, 500);
+        moveTest = new Movements(playerPos, playerBounds, 750);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class MovementsTest extends TestSetUp
     {
         moveTest.jump();
         velocity = moveTest.getVelocity();
-        Assert.assertEquals(500, velocity.y, 0.0);
+        Assert.assertEquals(750, velocity.y, 0.0);
         position = moveTest.getPosition();
         Assert.assertEquals(0, position.x, 0.0);
     }
@@ -44,7 +44,7 @@ public class MovementsTest extends TestSetUp
         velocity = moveTest.getVelocity();
         Assert.assertEquals(0, velocity.y, 0.0);
         position = moveTest.getPosition();
-        Assert.assertEquals(5, position.x, 0.0);
+        Assert.assertEquals(1, position.x, 0.0);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class MovementsTest extends TestSetUp
         velocity = moveTest.getVelocity();
         Assert.assertEquals(0, velocity.y, 0.0);
         position = moveTest.getPosition();
-        Assert.assertEquals(position.x, -5, 0.0);
+        Assert.assertEquals(position.x, -1, 0.0);
     }
 
 
